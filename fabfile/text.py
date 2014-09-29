@@ -11,7 +11,7 @@ import app_config
 from etc.gdocs import GoogleDoc
 
 @task(default=True)
-def update():
+def update(sheet_index=None):
     """
     Downloads a Google Doc as an Excel file.
     """
@@ -24,6 +24,9 @@ def update():
         bits = url.split('key=')
         bits = bits[1].split('&')
         doc['key'] = bits[0]
+
+        if sheet_index:
+            doc['gid'] = sheet_index
 
         g = GoogleDoc(**doc)
         g.get_auth()
