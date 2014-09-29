@@ -25,6 +25,7 @@
     </p>
 </div>
 
+{#
 <a class="comment-button comment-button-bubble comment-drawer-toggle" href="javascript:">
     <span class="comment-count"></span>
 </a>
@@ -33,23 +34,37 @@
     <span class="comment-count"></span>
     <span class="comment-label">Share / Discuss</span>
 </a>
+#}
 
-<h2>Example COPY list</h2>
-<dl>
-    {% for row in COPY.example_list %}
-    <dt>{{ row.term }}</dt><dd>{{ row.definition }}</dd>
+<h2>Pennsylvania Power Players</h2>
+<table class="table .table-striped">
+  <tbody>
+    <tr>
+      <th>Donor name</th>
+      <th>Donor city</th>
+      <th>Donor state</th>
+      <th>Business name</th>
+      <th>Business title</th>
+      <th>Total contributions (2012-14)</th>
+    </tr>
+    {% for row in COPY.Pennsylvania %}
+    <tr>
+      <td>{{ row['Donor name'] }}</td>
+      <td>{{ row['Donor city'] }}</td>
+      <td>{{ row['Donor state'] }}</td>
+      <td>{{ row['Business name'] }}</td>
+      <td>{{ row['Business title'] }}</td>
+      <td>{{ row['Total given 2012-14']|format_currency }}</td>
+    </tr>
     {% endfor %}
-</dl>
-
-<h2>JST example</h2>
-<p id="template-example"></p>
+  </tbody>
+</table>
 {% endblock %}
 
 
 {% block wide_content %}
 <div class="row">
     <div class="col-md-12">
-        <h2>{{ COPY.content.footer_title }}</h2>
         <p>{{ COPY.content.lorem_ipsum }}</p>
     </div>
 </div>

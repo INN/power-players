@@ -210,3 +210,5 @@ def smarty_filter(s):
 
     return Markup(s)
 
+def format_currency_filter(value):
+    return "${:,.2f}".format(float(value))
