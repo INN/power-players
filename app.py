@@ -30,17 +30,24 @@ def index():
 
     return render_template('index.html', **context)
 
-slugs = get_state_slugs()
-@app.route('/state/<any(%s):slug>' % ('"%s"' % '", "'.join(slugs)))
-def state(slug):
-    context = make_context()
-    state = state_slug_to_name(slug)
-    context['state'] = {
-        'name': state,
-        'data': get_state_data(state)
-    }
 
-    return render_template('state.html', **context)
+slugs = get_state_slugs()
+for slug in slugs:
+    @app.route('/state/%s/' % slug)
+    def state():
+        context = make_context()
+
+        from flask import request
+        slug = request.path.split('/')[2]
+
+        state = state_slug_to_name(slug)
+        context['state'] = {
+            'name': state,
+            'data': get_state_data(state)
+        }
+
+        return render_template('state.html', **context)
+
 
 @app.route('/comments/')
 def comments():
@@ -49,12 +56,14 @@ def comments():
     """
     return render_template('comments.html', **make_context())
 
+
 @app.route('/widget.html')
 def widget():
     """
     Embeddable widget example page.
     """
     return render_template('widget.html', **make_context())
+
 
 @app.route('/test_widget.html')
 def test_widget():
