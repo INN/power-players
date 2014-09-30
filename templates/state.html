@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+
+{% block header_content %}
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ COPY.content.project_name|smarty }}</h1>
+                <h2>{{ COPY.content.lorem_ipsum|smarty }}</h2>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+
+{% block content %}
+<h2>{{ state.name }} Power Players</h2>
+<table class="table .table-striped">
+  <tbody>
+    <tr>
+      <th>Donor name</th>
+      <th>Donor city</th>
+      <th>Donor state</th>
+      <th>Business name</th>
+      <th>Business title</th>
+      <th>Total contributions (2012-14)</th>
+    </tr>
+    {% for row in state.data %}
+    <tr>
+      <td>{{ row['Donor name'] }}</td>
+      <td>{{ row['Donor city'] }}</td>
+      <td>{{ row['Donor state'] }}</td>
+      <td>{{ row['Business name'] }}</td>
+      <td>{{ row['Business title'] }}</td>
+      <td>{{ row['Total given 2012-14']|format_currency }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+
+{% block wide_content %}
+<div class="row">
+    <div class="col-md-12">
+        <p>{{ COPY.content.lorem_ipsum }}</p>
+    </div>
+</div>
+{% endblock %}

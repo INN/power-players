@@ -9,6 +9,8 @@ import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter, format_currency_filter
 import static
 
+from helpers import state_slug_to_name, get_state_slugs, get_state_data
+
 app = Flask(__name__)
 
 app.jinja_env.filters['smarty'] = smarty_filter
@@ -27,6 +29,18 @@ def index():
         context['featured'] = json.load(f)
 
     return render_template('index.html', **context)
+
+slugs = get_state_slugs()
+@app.route('/state/<any(%s):slug>' % ('"%s"' % '", "'.join(slugs)))
+def state(slug):
+    context = make_context()
+    state = state_slug_to_name(slug)
+    context['state'] = {
+        'name': state,
+        'data': get_state_data(state)
+    }
+
+    return render_template('state.html', **context)
 
 @app.route('/comments/')
 def comments():
