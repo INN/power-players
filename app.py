@@ -52,7 +52,7 @@ for slug in state_slugs:
 
 player_slugs = get_player_slugs()
 for slug in player_slugs:
-    @app.route('/player/%s' % slug)
+    @app.route('/player/%s/' % slug)
     def player():
         context = make_context()
 
@@ -60,8 +60,6 @@ for slug in player_slugs:
         slug = request.path.split('/')[2]
 
         player = get_player_data(slug)
-        from pprint import pprint
-        pprint(player)
         if player:
             context['player'] = player
             return render_template('player.html', **context)

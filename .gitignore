@@ -41,6 +41,7 @@ www/js/templates.js
 www/js/app_config.js
 www/js/copy.js
 www/state/*
+www/player/*
 confs/rendered/*
 data/copy.xls
 data/copy.xlsx
