@@ -2,8 +2,12 @@
 import app_config
 import copytext
 import json
+import re
 
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
+from unicodedata import normalize
+
+_punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 
 def get_state_names(copy=None):
@@ -32,5 +36,40 @@ def state_slug_to_name(slug):
             return state
 
 
+def get_player_data(name):
+    data = get_players_data()
+    try:
+        return data[slugify(unicode(name))]
+    except KeyError:
+        return None
+
+
+def get_players_data():
+    data = {}
+    copy = get_copy()
+    states = get_state_names(copy)
+    for state in states:
+        for row in copy[state]:
+            slug = slugify(row['Donor name'])
+            data[slug] = {column: row[column] for column in row._columns}
+    return data
+
+
+def get_player_slugs():
+    data = get_players_data()
+    return data.keys()
+
+
+def slugify(text, delim=u'-'):
+    """Generates an slightly worse ASCII-only slug."""
+    result = []
+    for word in _punct_re.split(text.lower()):
+        word = normalize('NFKD', word).encode('ascii', 'ignore')
+        if word:
+            result.append(word)
+    return unicode(delim.join(result))
+
+
 def get_copy():
     return copytext.Copy(app_config.COPY_PATH)
+

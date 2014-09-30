@@ -9,7 +9,8 @@ import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter, format_currency_filter
 import static
 
-from helpers import state_slug_to_name, get_state_slugs, get_state_data
+from helpers import state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
+    get_player_data
 
 app = Flask(__name__)
 
@@ -17,11 +18,11 @@ app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
 app.jinja_env.filters['format_currency'] = format_currency_filter
 
-# Example application views
+
 @app.route('/')
 def index():
     """
-    Example view demonstrating rendering a simple HTML page.
+    Power Players homepage.
     """
     context = make_context()
 
@@ -31,8 +32,8 @@ def index():
     return render_template('index.html', **context)
 
 
-slugs = get_state_slugs()
-for slug in slugs:
+state_slugs = get_state_slugs()
+for slug in state_slugs:
     @app.route('/state/%s/' % slug)
     def state():
         context = make_context()
@@ -49,28 +50,24 @@ for slug in slugs:
         return render_template('state.html', **context)
 
 
-@app.route('/comments/')
-def comments():
-    """
-    Full-page comments view.
-    """
-    return render_template('comments.html', **make_context())
+player_slugs = get_player_slugs()
+for slug in player_slugs:
+    @app.route('/player/%s' % slug)
+    def player():
+        context = make_context()
 
+        from flask import request
+        slug = request.path.split('/')[2]
 
-@app.route('/widget.html')
-def widget():
-    """
-    Embeddable widget example page.
-    """
-    return render_template('widget.html', **make_context())
+        player = get_player_data(slug)
+        from pprint import pprint
+        pprint(player)
+        if player:
+            context['player'] = player
+            return render_template('player.html', **context)
+        else:
+            return 404
 
-
-@app.route('/test_widget.html')
-def test_widget():
-    """
-    Example page displaying widget at different embed sizes.
-    """
-    return render_template('test_widget.html', **make_context())
 
 app.register_blueprint(static.static)
 

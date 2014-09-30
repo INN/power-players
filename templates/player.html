@@ -1,0 +1,44 @@
+{% extends '_base.html' %}
+
+{% block header_content %}
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ COPY.content.project_name|smarty }}</h1>
+                <h2>{{ COPY.content.lorem_ipsum|smarty }}</h2>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+
+{% block content %}
+<h2>{{ player['Donor name'] }}</h2>
+<div class="donor-image">
+  <img src="http://www.fillmurray.com/300/400" />
+</div>
+<div class="donor-stats">
+  <p class="city-state">{{ player['Donor city'] }}, {{ player['Donor state'] }}</p>
+  <p class="title-business">{{ player['Business title'] }}, {{ player['Business name'] }}</p>
+  <p class="contributions">Total contributions: <span class="currency">{{ player['Total given 2012-14']|format_currency }}</span></p>
+  <p class="recipients">
+  Top recipients
+    <ol>
+      {% for n in range(3) %}
+        <li>{{ player['top recipient %s' % loop.index] }}, <span class="currency">{{ player['top recipient 1 amt']|format_currency }}</span></li>
+      {% endfor %}
+    </ol>
+  </p>
+</div>
+{% endblock %}
+
+
+{% block wide_content %}
+<div class="row">
+    <div class="col-md-12">
+        <p>{{ COPY.content.lorem_ipsum }}</p>
+    </div>
+</div>
+{% endblock %}
