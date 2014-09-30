@@ -52,8 +52,8 @@ ASSETS_S3_BUCKET = {
     'region': 'us-west-2'
 }
 
-PRODUCTION_SERVERS = []
-STAGING_SERVERS = []
+PRODUCTION_SERVERS = ['']
+STAGING_SERVERS = ['']
 
 # Should code be deployed to the web/cron servers?
 DEPLOY_TO_SERVERS = False
