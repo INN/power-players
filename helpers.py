@@ -10,17 +10,23 @@ from unicodedata import normalize
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 
-def get_state_names(copy=None):
+def get_state_names():
+    copy = get_copy()
     not_states = ['content', ] # Spreadsheet sheet names that are not state names
-    if copy:
-        return [state for state in json.loads(copy.json()).keys() if state not in not_states]
-    else:
-        return None
+    ret = [state for state in json.loads(copy.json()).keys() if state not in not_states]
+    ret.sort()
+    return ret
 
 
 def get_state_slugs():
-    states = get_state_names(get_copy())
-    return [state.lower().replace(' ', '-') for state in states]
+    states = get_state_names()
+    ret = [state.lower().replace(' ', '-') for state in states]
+    ret.sort()
+    return ret
+
+
+def get_state_slug_name_map():
+    return dict(zip(get_state_slugs(), get_state_names()))
 
 
 def get_state_data(name=None):
@@ -30,7 +36,7 @@ def get_state_data(name=None):
 
 def state_slug_to_name(slug):
     copy = get_copy()
-    states = get_state_names(copy)
+    states = get_state_names()
     for state in states:
         if state.lower() == slug.replace('-', ' '):
             return state
@@ -47,7 +53,7 @@ def get_player_data(name):
 def get_players_data():
     data = {}
     copy = get_copy()
-    states = get_state_names(copy)
+    states = get_state_names()
     for state in states:
         for row in copy[state]:
             slug = slugify(row['Donor name'])
@@ -73,3 +79,58 @@ def slugify(text, delim=u'-'):
 def get_copy():
     return copytext.Copy(app_config.COPY_PATH)
 
+
+def state_name_to_stateface_letter(name):
+    state_map = {
+        'Alabama': 'B',
+        'Alaska': 'A',
+        'Arizona': 'D',
+        'Arkansas': 'C',
+        'California': 'E',
+        'Colorado': 'F',
+        'Connecticut': 'G',
+        'Delaware': 'H',
+        'Florida': 'I',
+        'Georgia': 'J',
+        'Hawaii': 'K',
+        'Idaho': 'M',
+        'Illinois': 'N',
+        'Indiana': 'O',
+        'Iowa': 'L',
+        'Kansas': 'P',
+        'Kentucky': 'Q',
+        'Louisiana': 'R',
+        'Maine': 'U',
+        'Maryland': 'T',
+        'Massachusetts': 'S',
+        'Michigan': 'V',
+        'Minnesota': 'W',
+        'Mississippi': 'Y',
+        'Missouri': 'X',
+        'Montana': 'Z',
+        'Nebraska': 'c',
+        'Nevada': 'g',
+        'New Hampshire': 'd',
+        'New Jersey': 'e',
+        'New Mexico': 'f',
+        'New York': 'h',
+        'North Carolina': 'a',
+        'North Dakota': 'b',
+        'Ohio': 'i',
+        'Oklahoma': 'j',
+        'Oregon': 'k',
+        'Pennsylvania': 'l',
+        'Rhode Island': 'm',
+        'South Carolina': 'n',
+        'South Dakota': 'o',
+        'Tennessee': 'p',
+        'Texas': 'q',
+        'Utah': 'r',
+        'Vermont': 't',
+        'Virginia': 's',
+        'Washington': 'u',
+        'West Virginia': 'w',
+        'Wisconsin': 'v',
+        'Wyoming': 'x',
+    }
+    return state_map.get(name, None)

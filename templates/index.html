@@ -1,5 +1,9 @@
 {% extends '_base.html' %}
 
+{% block extra_css %}
+  {{ CSS.push('assets/fonts/stateface/stylesheet.css') }}
+{% endblock extra_css %}
+
 {% block header_content %}
 <header>
     <div class="container">
@@ -13,9 +17,8 @@
 </header>
 {% endblock %}
 
-
 {% block content %}
-<h1>{{ COPY.content.project_name }}</h1>
+{# <h1>{{ COPY.content.project_name }}</h1>
 
 <div id="story-meta">
     <p class="byline">by <span>{{ COPY.content.byline }}</span></p>
@@ -24,41 +27,19 @@
         <span class="time"> {{ COPY.content.pubtime }}</span>
     </p>
 </div>
-
-{#
-<a class="comment-button comment-button-bubble comment-drawer-toggle" href="javascript:">
-    <span class="comment-count"></span>
-</a>
-
-<a class="comment-button comment-button-article comment-drawer-toggle" data-toggle="modal" data-backdrop="static" data-target="#share-modal">
-    <span class="comment-count"></span>
-    <span class="comment-label">Share / Discuss</span>
-</a>
 #}
 
-<h2>Pennsylvania Power Players</h2>
-<table class="table .table-striped">
-  <tbody>
-    <tr>
-      <th>Donor name</th>
-      <th>Donor city</th>
-      <th>Donor state</th>
-      <th>Business name</th>
-      <th>Business title</th>
-      <th>Total contributions (2012-14)</th>
-    </tr>
-    {% for row in COPY.Pennsylvania %}
-    <tr>
-      <td>{{ row['Donor name'] }}</td>
-      <td>{{ row['Donor city'] }}</td>
-      <td>{{ row['Donor state'] }}</td>
-      <td>{{ row['Business name'] }}</td>
-      <td>{{ row['Business title'] }}</td>
-      <td>{{ row['Total given 2012-14']|format_currency }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div id="select-a-state">
+{% for slug, state in states.iteritems() %}
+  <div class="state">
+    <a href="/state/{{ slug }}">
+      <span class="icon">{{ state|stateface }}</span>
+      <span class="name">{{ state }}</span>
+    </a>
+  </div>
+{% endfor %}
+</div>
+
 {% endblock %}
 
 

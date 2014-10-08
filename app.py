@@ -10,14 +10,14 @@ from render_utils import make_context, smarty_filter, urlencode_filter, format_c
 import static
 
 from helpers import state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
-    get_player_data
+    get_player_data, state_name_to_stateface_letter, get_state_slug_name_map
 
 app = Flask(__name__)
 
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
 app.jinja_env.filters['format_currency'] = format_currency_filter
-
+app.jinja_env.filters['stateface'] = state_name_to_stateface_letter
 
 @app.route('/')
 def index():
@@ -28,6 +28,8 @@ def index():
 
     with open('data/featured.json') as f:
         context['featured'] = json.load(f)
+
+    context['states'] = get_state_slug_name_map()
 
     return render_template('index.html', **context)
 
