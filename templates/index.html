@@ -1,7 +1,7 @@
 {% extends '_base.html' %}
 
 {% block extra_css %}
-  {{ CSS.push('assets/fonts/stateface/stylesheet.css') }}
+  {{ CSS.push('css/stateface/stylesheet.css') }}
 {% endblock extra_css %}
 
 {% block header_content %}
@@ -18,17 +18,6 @@
 {% endblock %}
 
 {% block content %}
-{# <h1>{{ COPY.content.project_name }}</h1>
-
-<div id="story-meta">
-    <p class="byline">by <span>{{ COPY.content.byline }}</span></p>
-    <p class="dateblock">
-        <span class="date">{{ COPY.content.pubdate }}</span>
-        <span class="time"> {{ COPY.content.pubtime }}</span>
-    </p>
-</div>
-#}
-
 <div id="select-a-state">
 {% for slug, state in states.iteritems() %}
   <div class="state">
@@ -39,9 +28,7 @@
   </div>
 {% endfor %}
 </div>
-
 {% endblock %}
-
 
 {% block wide_content %}
 <div class="row">
