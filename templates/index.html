@@ -21,7 +21,7 @@
 <div id="select-a-state">
 {% for slug, state in states.iteritems() %}
   <div class="state">
-    <a href="/state/{{ slug }}">
+    <a href="state/{{ slug }}">
       <span class="icon">{{ state|stateface }}</span>
       <span class="name">{{ state }}</span>
     </a>
