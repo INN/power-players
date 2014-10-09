@@ -7,9 +7,11 @@ import re
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
 from unicodedata import normalize
 
+CACHE = {}
+
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
-
+# State data
 def get_state_names():
     copy = get_copy()
     not_states = ['content', ] # Spreadsheet sheet names that are not state names
@@ -42,6 +44,7 @@ def state_slug_to_name(slug):
             return state
 
 
+# Individual donors/players
 def get_player_data(name):
     data = get_players_data()
     try:
@@ -66,6 +69,7 @@ def get_player_slugs():
     return data.keys()
 
 
+# Other helpers
 def slugify(text, delim=u'-'):
     """Generates an slightly worse ASCII-only slug."""
     result = []
@@ -76,8 +80,41 @@ def slugify(text, delim=u'-'):
     return unicode(delim.join(result))
 
 
+def format_name(name):
+    parts = name.split(', ')
+    parts.reverse()
+    _tmp_parts = []
+    for part in parts:
+        sub_parts = part.split()
+        if len(sub_parts) > 1:
+            for sub_part in sub_parts:
+                _tmp_parts.append(sub_part)
+        elif len(sub_parts) == 1:
+            _tmp_parts.append(sub_parts[0])
+
+    parts = _tmp_parts
+    _tmp_parts = []
+    for part in parts:
+        if len(part) == 1:
+            _tmp_parts.append(part + '.')
+        elif part in ['JR', 'SR', ]:
+            _tmp_parts.append(part + '.')
+        else:
+            _tmp_parts.append(part)
+
+    parts = _tmp_parts
+    return ' '.join([part.capitalize() for part in parts])
+
+
+def format_business_name(name):
+    parts = name.split()
+    return ' '.join([part.capitalize() for part in parts])
+
+
 def get_copy():
-    return copytext.Copy(app_config.COPY_PATH)
+    if not CACHE.get('copy', None):
+        CACHE['copy'] = copytext.Copy(app_config.COPY_PATH)
+    return CACHE['copy']
 
 
 def state_name_to_stateface_letter(name):

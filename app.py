@@ -10,13 +10,18 @@ from render_utils import make_context, smarty_filter, urlencode_filter, format_c
 import static
 
 from helpers import state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
-    get_player_data, state_name_to_stateface_letter, get_state_slug_name_map
+    get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_name, \
+    format_business_name
 
 app = Flask(__name__)
 
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
+
+# Power Players filters
 app.jinja_env.filters['format_currency'] = format_currency_filter
+app.jinja_env.filters['format_business_name'] = format_business_name
+app.jinja_env.filters['format_name'] = format_name
 app.jinja_env.filters['stateface'] = state_name_to_stateface_letter
 
 @app.route('/')
