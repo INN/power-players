@@ -6,12 +6,11 @@ import argparse
 from flask import Flask, render_template
 
 import app_config
-from render_utils import make_context, smarty_filter, urlencode_filter, format_currency_filter
+from render_utils import smarty_filter, urlencode_filter
 import static
 
-from helpers import state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
-    get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_name, \
-    format_business_name
+from helpers import make_context, state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
+    get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter
 
 app = Flask(__name__)
 
@@ -20,8 +19,6 @@ app.jinja_env.filters['urlencode'] = urlencode_filter
 
 # Power Players filters
 app.jinja_env.filters['format_currency'] = format_currency_filter
-app.jinja_env.filters['format_business_name'] = format_business_name
-app.jinja_env.filters['format_name'] = format_name
 app.jinja_env.filters['stateface'] = state_name_to_stateface_letter
 
 @app.route('/')

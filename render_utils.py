@@ -209,9 +209,3 @@ def smarty_filter(s):
     s = smartypants(s)
 
     return Markup(s)
-
-def format_currency_filter(value):
-    try:
-        return "${:,.2f}".format(float(value))
-    except:
-        return None

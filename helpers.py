@@ -5,6 +5,7 @@ import json
 import re
 
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
+from project_copy import PlayersCopy
 from unicodedata import normalize
 
 CACHE = {}
@@ -80,40 +81,9 @@ def slugify(text, delim=u'-'):
     return unicode(delim.join(result))
 
 
-def format_name(name):
-    parts = name.split(', ')
-    parts.reverse()
-    _tmp_parts = []
-    for part in parts:
-        sub_parts = part.split()
-        if len(sub_parts) > 1:
-            for sub_part in sub_parts:
-                _tmp_parts.append(sub_part)
-        elif len(sub_parts) == 1:
-            _tmp_parts.append(sub_parts[0])
-
-    parts = _tmp_parts
-    _tmp_parts = []
-    for part in parts:
-        if len(part) == 1:
-            _tmp_parts.append(part + '.')
-        elif part in ['JR', 'SR', ]:
-            _tmp_parts.append(part + '.')
-        else:
-            _tmp_parts.append(part)
-
-    parts = _tmp_parts
-    return ' '.join([part.capitalize() for part in parts])
-
-
-def format_business_name(name):
-    parts = name.split()
-    return ' '.join([part.capitalize() for part in parts])
-
-
 def get_copy():
     if not CACHE.get('copy', None):
-        CACHE['copy'] = copytext.Copy(app_config.COPY_PATH)
+        CACHE['copy'] = PlayersCopy(app_config.COPY_PATH)
     return CACHE['copy']
 
 
@@ -171,3 +141,28 @@ def state_name_to_stateface_letter(name):
         'Wyoming': 'x',
     }
     return state_map.get(name, None)
+
+
+def format_currency_filter(value):
+    try:
+        return "${:,.2f}".format(float(value))
+    except:
+        return None
+
+
+def make_context(asset_depth=0):
+    """
+    Create a base-context for rendering views.
+    Includes app_config and JS/CSS includers.
+
+    `asset_depth` indicates how far into the url hierarchy
+    the assets are hosted. If 0, then they are at the root.
+    If 1 then at /foo/, etc.
+    """
+    context = flatten_app_config()
+
+    context['COPY'] = PlayersCopy(app_config.COPY_PATH)
+    context['JS'] = JavascriptIncluder(asset_depth=asset_depth)
+    context['CSS'] = CSSIncluder(asset_depth=asset_depth)
+
+    return context
