@@ -34,7 +34,10 @@ def get_state_slug_name_map():
 
 def get_state_data(name=None):
     copy = get_copy()
-    return copy[name]
+    ret = []
+    for row in copy[name]:
+        ret.append(row)
+    return ret
 
 
 def state_slug_to_name(slug):

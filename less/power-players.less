@@ -31,10 +31,51 @@
   .donor {
     float: left;
     clear: both;
+    margin: 0 0 40px 0;
   }
   .donor-name-image {
     float: left;
     margin: 0 20px 20px 0;
   }
-  .donor-stats { float: left; }
+  .donor-stats {
+    float: left;
+
+    h2,
+    .city-state,
+    .title-business {
+      text-align: center;
+    }
+
+    .recipients {
+      width: 100%;
+      float: left;
+      margin: 0 0 8px 0;
+
+      p, ol, li {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-position: inside;
+        &.odd {
+          background: #f1f1f1;
+        }
+      }
+
+      .currency {
+        float: right;
+        margin-left: 20px;
+      }
+    }
+  }
+  .donation-breakdown {
+    width: 100%;
+    clear: both;
+    border-top: 1px solid #ccc;
+    margin: 10px 0 0 0;
+    h3 {
+      text-align: center;
+    }
+  }
 }
+
