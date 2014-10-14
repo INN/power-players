@@ -16,30 +16,6 @@
 
 {% block content %}
 <h2>{{ state.name }}'s Power Players</h2>
-{#
-<table class="table .table-striped">
-  <tbody>
-    <tr>
-      <th>Donor name</th>
-      <th>Donor city</th>
-      <th>Donor state</th>
-      <th>Business name</th>
-      <th>Business title</th>
-      <th>Total contributions (2012-14)</th>
-    </tr>
-    {% for row in state.data %}
-    <tr>
-      <td>{{ row['Donor name'] }}</td>
-      <td>{{ row['Donor city'] }}</td>
-      <td>{{ row['Donor state'] }}</td>
-      <td>{{ row['Business name'] }}</td>
-      <td>{{ row['Business title'] }}</td>
-      <td>{{ row['Total given 2012-14']|format_currency }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table> #}
-
 <div class="donor-list">
   {% for player in state.data %}
     <div class="donor">
@@ -47,10 +23,10 @@
         <div class="donor-image">
           <img src="http://www.fillmurray.com/300/400" />
         </div>
-        <h2 class="donor-name">{{ player['Donor name'] }}</h2>
-        <p class="city-state">{{ player['Donor city'] }}, {{ player['Donor state'] }}</p>
       </div>
       <div class="donor-stats">
+        <h2 class="donor-name">{{ player['Donor name'] }}</h2>
+        <p class="city-state">{{ player['Donor city'] }}, {{ player['Donor state'] }}</p>
         <p class="title-business">{{ player['Business title'] }}, {{ player['Business name'] }}</p>
         <p class="contributions">Total contributions: <span class="currency">{{ player['Total given 2012-14']|format_currency }}</span></p>
         <p class="recipients">
