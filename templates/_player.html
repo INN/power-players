@@ -1,25 +1,47 @@
 <div class="player">
   <div class="player-name-image">
     <div class="player-image">
-      <img src="http://www.fillmurray.com/300/300" />
+      <a href="{{ url_for(player['Donor name']|slugify) }}"><img src="http://www.fillmurray.com/280/320" /></a>
+    </div>
+    <div class="player-utils">
+      <ul>
+        <li><a href="#"><i class="icon icon-launch"></i> More information</a></li>
+        <li><a href="#"><i class="icon icon-embed"></i> Embed this card</a></li>
+        <li><a href="#"><i class="icon icon-link"></i> Copy link to this card</a></li>
+      </ul>
     </div>
   </div>
   <div class="player-stats">
-    <h2 class="player-name">{{ player['Donor name'] }}</h2>
+    <h2 class="player-name">
+      <a href="{{ url_for(player['Donor name']|slugify) }}">{{ player['Donor name'] }}</a>
+    </h2>
+
     <p class="city-state">{{ player['Donor city'] }}, {{ player['Donor state'] }}</p>
     <p class="title-business">{{ player['Business title'] }}, {{ player['Business name'] }}</p>
-    <p class="contributions">Total contributions: <span class="currency">{% if player['Total given 2012-14'] %}{{ player['Total given 2012-14']|format_currency }}{% else %}{{ player['Total given 2011-14']|format_currency }}{% endif %}</span></p>
+
+    <div class="contributions">
+      <h3>Total contributions:</h3>
+      <span class="currency">{% if player['Total given 2012-14'] %}{{ player['Total given 2012-14']|format_currency }}{% else %}{{ player['Total given 2011-14']|format_currency }}{% endif %}</span>
+    </div>
+
     <div class="recipients">
-      <p>Top recipients</p>
+      <h3>Top recipients</h3>
       <ol>
         {% for n in range(3) %}
           <li class="{{ loop.cycle('odd', 'even') }}"><span class="recipient">{{ player['top recipient %s' % loop.index] }}</span> <span class="currency">{{ player['top recipient 1 amt']|format_currency }}</span></li>
         {% endfor %}
       </ol>
     </div>
-  </div>
-  <div class="donation-breakdown">
-    <h3>Where the money goes</h3>
+    <div class="donation-breakdown">
+      <h3>Where did the money go?</h3>
+      <div class="donation-key">
+        <ul>
+          <li class="in-state"><span class="square"></span> In state</li>
+          <li class="out-of-state"><span class="square"></span> Out of state</li>
+          <li class="federal"><span class="square"></span> Federal</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="embed">
   </div>

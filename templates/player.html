@@ -1,4 +1,4 @@
-{% extends '_base.html' %}
+{% extends '_empty_base.html' %}
 
 {% block header_content %}
 <header>
@@ -15,23 +15,7 @@
 
 
 {% block content %}
-<h2>{{ player['Donor name'] }}</h2>
-<div class="donor-image">
-  <img src="http://www.fillmurray.com/300/400" />
-</div>
-<div class="donor-stats">
-  <p class="city-state">{{ player['Donor city'] }}, {{ player['Donor state'] }}</p>
-  <p class="title-business">{{ player['Business title'] }}, {{ player['Business name'] }}</p>
-  <p class="contributions">Total contributions: <span class="currency">{{ player['Total given 2012-14']|format_currency }}</span></p>
-  <p class="recipients">
-  Top recipients
-    <ol>
-      {% for n in range(3) %}
-        <li>{{ player['top recipient %s' % loop.index] }}, <span class="currency">{{ player['top recipient 1 amt']|format_currency }}</span></li>
-      {% endfor %}
-    </ol>
-  </p>
-</div>
+  {% include '_player.html' %}
 {% endblock %}
 
 

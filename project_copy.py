@@ -19,16 +19,22 @@ def format_name(name):
 
     parts = _tmp_parts
     _tmp_parts = []
+    _suffixes = []
     for part in parts:
         if len(part) == 1:
             _tmp_parts.append(part + '.')
         elif part in ['JR', 'SR', ]:
-            _tmp_parts.append(part + '.')
+            _suffixes.append(part + '.')
         else:
             _tmp_parts.append(part)
 
     parts = _tmp_parts
-    return ' '.join([part.capitalize() for part in parts])
+
+    ret = ' '.join([part.capitalize() for part in parts])
+    if len(_suffixes) > 0 :
+        ret = ret + ', ' + ' '.join([suf.capitalize() for suf in _suffixes])
+
+    return ret
 
 
 def format_business_name(name):

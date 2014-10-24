@@ -28,17 +28,74 @@
   }
 }
 
-.player-list {
-  .player {
-    float: left;
-    clear: both;
-    margin: 0 0 40px 0;
+i.icon {
+  width: 1em;
+  height: 1em;
+  background-size: 1em 1em;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+i.icon-embed {
+  background-image: url('../assets/icons/embed.png');
+}
+i.icon-link {
+  background-image: url('../assets/icons/ic_link_black_48dp.png');
+}
+i.icon-launch {
+  background-image: url('../assets/icons/ic_launch_black_48dp.png');
+}
+
+.player {
+  float: left;
+  clear: both;
+  margin: 0 0 40px 0;
+  width: 100%;
+  padding: 1em;
+  border: 1em solid #339da1;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+  }
+
+  .player-utils {
+    margin: 20px 0 0 0;
+    font-size: 20px;
+
+    li {
+      font-size: 0.85em;
+      margin: 0 0 8px 1em;
+      i { margin-right: 8px; }
+      a {
+        color: #484848;
+      }
+    }
+  }
+
+  .player-name {
+    font-family: 'Roboto Condensed bold', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 4px;
+    & > a { color: #484848; }
   }
   .player-name-image {
     float: left;
-    margin: 0 20px 20px 0;
+    width: 30%;
+    margin-right: 9%;
+    img {
+      max-width: 100%;
+    }
   }
   .player-stats {
+    width: 60%;
     float: left;
 
     h2,
@@ -47,20 +104,46 @@
       text-align: center;
     }
 
+    .city-state,
+    .title-business {
+      font-family: 'Roboto light', sans-serif;
+      font-size: 18px;
+      margin: 4px 0;
+      padding: 0;
+    }
+
+    h3 {
+      font-family: 'Roboto bold', sans-serif;
+      font-weight: bold;
+      color: #484848;
+    }
+
+    .contributions {
+      margin-top: 20px;
+      h3 {
+        display: inline;
+      }
+      span {
+        font-weight: bold;
+        font-size: 24px;
+        color: #484848;
+      }
+    }
+
     .recipients {
       width: 100%;
       float: left;
-      margin: 0 0 8px 0;
+      margin: 0;
 
+      h3 {
+        margin-bottom: 8px;
+      }
       p, ol, li {
         margin: 0;
         padding: 0;
       }
       li {
         list-style-position: inside;
-        &.odd {
-          background: #f1f1f1;
-        }
       }
 
       .currency {
@@ -70,12 +153,27 @@
     }
   }
   .donation-breakdown {
-    width: 100%;
-    clear: both;
-    border-top: 1px solid #ccc;
-    margin: 10px 0 0 0;
+    float: left;
     h3 {
-      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+    ul {
+      li {
+        margin: 0 10px 0 0;
+        float: left;
+        font-size: 14px;
+
+        .square {
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          margin: 0 4px 0 0;
+        }
+        &.in-state .square { background: #8d8480; }
+        &.out-of-state .square { background: #F8E66D; }
+        &.federal .square { background: #2E7294; }
+      }
     }
   }
 }

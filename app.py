@@ -10,7 +10,8 @@ from render_utils import smarty_filter, urlencode_filter
 import static
 
 from helpers import make_context, state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
-    get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter
+    get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter, \
+    slugify
 
 app = Flask(__name__)
 
@@ -20,6 +21,7 @@ app.jinja_env.filters['urlencode'] = urlencode_filter
 # Power Players filters
 app.jinja_env.filters['format_currency'] = format_currency_filter
 app.jinja_env.filters['stateface'] = state_name_to_stateface_letter
+app.jinja_env.filters['slugify'] = slugify
 
 @app.route('/')
 def index():
@@ -38,7 +40,7 @@ def index():
 
 state_slugs = get_state_slugs()
 for slug in state_slugs:
-    @app.route('/state/%s/' % slug)
+    @app.route('/state/%s/' % slug, endpoint=slug)
     def state():
         context = make_context()
 
@@ -56,7 +58,7 @@ for slug in state_slugs:
 
 player_slugs = get_player_slugs()
 for slug in player_slugs:
-    @app.route('/player/%s/' % slug)
+    @app.route('/player/%s/' % slug, endpoint=slug)
     def player():
         context = make_context()
 
