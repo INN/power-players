@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ COPY.content.project_name }}</title>
+
+    <!-- META TAGS -->
+    {% include '_meta.html' %}
+
+    <!-- CHARTBEAT -->
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
+    <!-- FONTS -->
+    {% include '_fonts.html' %}
+
+    <!-- CSS -->
+    {{ CSS.push('less/app.less') }}
+    {% block extra_css %}{% endblock extra_css %}
+    {{ CSS.render('css/app.min.css') }}
+
+    <!-- JS -->
+    {{ JS.push('js/lib/modernizr.js') }}
+    {{ JS.render('js/app-header.min.js') }}
+
+    {% include '_social_tags.html' %}
+
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+<body>
+  {% include '_player.html' %}
+
+  {{ JS.push('js/lib/jquery.js') }}
+  {{ JS.push('js/pym.js') }}
+  {{ JS.render('js/app-footer.min.js') }}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var pymChild = new pym.Child();
+    });
+  </script>
+</body>
+</html>

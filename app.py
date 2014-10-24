@@ -72,6 +72,20 @@ for slug in player_slugs:
         else:
             return 404
 
+    @app.route('/embed/player/%s/' % slug, endpoint='embed-%s' % slug)
+    def embed_player():
+        context = make_context()
+
+        from flask import request
+        slug = request.path.split('/')[3]
+
+        player = get_player_data(slug)
+        if player:
+            context['player'] = player
+            return render_template('embed_player.html', **context)
+        else:
+            return 404
+
 
 app.register_blueprint(static.static)
 
