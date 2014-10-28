@@ -70,19 +70,11 @@ var bindPlayerUtils = function() {
 
 var embedModal = function(e) {
     var target = $(e.currentTarget).parent().parent().parent(),
-        embed_url,
-        pym_url,
-        deployment_target = APP_CONFIG.DEPLOYMENT_TARGET,
         slug = target.data('player-slug'),
-        name = target.data('player-name');
-
-    if (deployment_target == 'staging' || deployment_target == 'production') {
-        embed_url = APP_CONFIG.S3_BASE_URL + '/' + APP_CONFIG.PROJECT_SLUG + '/embed/player/' + slug + '/';
-        pym_url = APP_CONFIG.S3_BASE_URL + '/' + APP_CONFIG.PROJECT_SLUG + '/assets/js/pym.js';
-    } else {
-        embed_url = APP_CONFIG.S3_BASE_URL + '/embed/player/' + slug + '/';
+        name = target.data('player-name'),
+        deployment_target = APP_CONFIG.DEPLOYMENT_TARGET,
+        embed_url = APP_CONFIG.S3_BASE_URL + '/embed/player/' + slug + '/',
         pym_url = APP_CONFIG.S3_BASE_URL + '/assets/js/pym.js';
-    }
 
     var modal = JST.embedModal({
         embed_url: embed_url,
