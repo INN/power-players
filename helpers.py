@@ -13,10 +13,20 @@ CACHE = {}
 
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
+EXCLUDED_STATES = [
+    'Vermont',
+    'Louisiana',
+    'Pennsylvania',
+    'Maine',
+    'Montana',
+    'New York'
+]
+
 # State data
 def get_state_names():
     copy = get_copy()
-    not_states = ['content', ] # Spreadsheet sheet names that are not state names
+    # Spreadsheet sheet names that are not state names or states that have been excluded
+    not_states = ['content', ] + EXCLUDED_STATES
     ret = [state for state in json.loads(copy.json()).keys() if state not in not_states]
     ret.sort()
     return ret
