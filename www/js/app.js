@@ -64,6 +64,8 @@ var bindPlayerUtils = function() {
     $('.player-utils li a').click(function(e) {
         if ($(this).hasClass('embed'))
             embedModal(e);
+        if ($(this).hasClass('copy-link'))
+            copyURLModal(e);
         return false;
     });
 };
@@ -85,5 +87,20 @@ var embedModal = function(e) {
 
     $(modal).modal();
 };
+
+var copyURLModal = function(e) {
+    var target = $(e.currentTarget).parent().parent().parent(),
+        slug = target.data('player-slug'),
+        name = target.data('player-name'),
+        deployment_target = APP_CONFIG.DEPLOYMENT_TARGET,
+        url = APP_CONFIG.S3_BASE_URL + '/player/' + slug + '/';
+
+    var modal = JST.copyURLModal({
+        url: url,
+        name: name
+    });
+
+    $(modal).modal();
+}
 
 $(onDocumentLoad);
