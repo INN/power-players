@@ -4,6 +4,7 @@ import copytext
 import json
 import re
 
+from flask import url_for
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
 from project_copy import PlayersCopy
 from unicodedata import normalize
@@ -169,3 +170,10 @@ def make_context(asset_depth=0):
     context['CSS'] = CSSIncluder(asset_depth=asset_depth)
 
     return context
+
+
+def project_url_for(endpoint, **values):
+    if app_config.DEPLOYMENT_TARGET not in ['staging', 'production', ]:
+        return url_for(endpoint, **values)
+    else:
+        return "/" + app_config.PROJECT_SLUG + url_for(endpoint, **values)

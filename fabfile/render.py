@@ -113,7 +113,7 @@ def render_all():
             else:
                 module = 'app'
 
-            view = globals()[module].__dict__[name]
+            view = app.app.view_functions[name]
             content = view()
 
             compiled_includes = g.compiled_includes
