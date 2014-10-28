@@ -3,11 +3,11 @@
     <div class="player-image">
       <a href="{{ url_for(player['Donor name']|slugify) }}"><img src="http://www.fillmurray.com/280/320" /></a>
     </div>
-    <div class="player-utils">
+    <div class="player-utils" data-player-slug="{{ player['Donor name']|slugify }}" data-player-name="{{ player['Donor name'] }}">
       <ul>
-        <li><a href="#"><i class="icon icon-launch"></i> More information</a></li>
-        <li><a href="#"><i class="icon icon-embed"></i> Embed this card</a></li>
-        <li><a href="#"><i class="icon icon-link"></i> Copy link to this card</a></li>
+        <li><a class="more-info" href="#"><i class="icon icon-launch"></i> More information</a></li>
+        <li><a class="embed" href="#"><i class="icon icon-embed"></i> Embed this card</a></li>
+        <li><a class="copy-link" href="#"><i class="icon icon-link"></i> Copy link to this card</a></li>
       </ul>
     </div>
   </div>
@@ -43,7 +43,4 @@
       </div>
     </div>
   </div>
-  <div class="embed">
-  </div>
 </div>
-
