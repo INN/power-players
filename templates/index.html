@@ -6,7 +6,6 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>{{ COPY.content.project_name|smarty }}</h1>
-                <h2>{{ COPY.content.lorem_ipsum|smarty }}</h2>
             </div>
         </div>
     </div>
@@ -29,7 +28,8 @@
 {% block wide_content %}
 <div class="row">
     <div class="col-md-12">
-        <p>{{ COPY.content.lorem_ipsum }}</p>
+        <p>{{ COPY.content.about_data }}</p>
+        <p>{{ COPY.content.data_sources }}</p>
     </div>
 </div>
 {% endblock %}

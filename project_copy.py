@@ -49,9 +49,9 @@ def capitalize(text):
 
 
 FIELD_NAME_FILTERS = {
-    'Donor name': format_name,
-    'Business name': format_business_name,
-    'Business title': capitalize
+    'Donor Name': format_name,
+    'Business Name': format_business_name,
+    'Business Title': capitalize
 }
 
 

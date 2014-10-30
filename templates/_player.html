@@ -1,11 +1,11 @@
 <div class="player">
   <div class="player-name-image">
     <div class="player-image">
-      <a href="{{ url_for(player['Donor name']|slugify) }}"><img src="http://www.fillmurray.com/280/320" /></a>
+      <a href="{{ url_for(player['Donor Name']|slugify) }}"><img src="http://www.fillmurray.com/280/320" /></a>
     </div>
-    <div class="player-utils" data-player-slug="{{ player['Donor name']|slugify }}" data-player-name="{{ player['Donor name'] }}">
+    <div class="player-utils" data-player-slug="{{ player['Donor Name']|slugify }}" data-player-name="{{ player['Donor Name'] }}">
       <ul>
-        <li><a class="more-info" href="#"><i class="icon icon-launch"></i> More information</a></li>
+        {# <li><a class="more-info" href="#"><i class="icon icon-launch"></i> More information</a></li> #}
         <li><a class="embed" href="#"><i class="icon icon-embed"></i> Embed this card</a></li>
         <li><a class="copy-link" href="#"><i class="icon icon-link"></i> Copy link to this card</a></li>
       </ul>
@@ -13,11 +13,11 @@
   </div>
   <div class="player-stats">
     <h2 class="player-name">
-      <a href="{{ url_for(player['Donor name']|slugify) }}">{{ player['Donor name'] }}</a>
+      <a href="{{ url_for(player['Donor Name']|slugify) }}">{{ player['Donor Name'] }}</a>
     </h2>
 
-    <p class="city-state">{{ player['Donor city'] }}, {{ player['Donor state'] }}</p>
-    <p class="title-business">{{ player['Business title'] }}, {{ player['Business name'] }}</p>
+    <p class="city-state">{{ player['Donor City'] }}, {{ player['Donor State'] }}</p>
+    <p class="title-business">{{ player['Business Title'] }}, {{ player['Business Name'] }}</p>
 
     <div class="contributions">
       <h3>Total contributions:</h3>
@@ -28,7 +28,7 @@
       <h3>Top recipients</h3>
       <ol>
         {% for n in range(3) %}
-          <li class="{{ loop.cycle('odd', 'even') }}"><span class="recipient">{{ player['top recipient %s' % loop.index] }}</span> <span class="currency">{{ player['top recipient 1 amt']|format_currency }}</span></li>
+          <li class="{{ loop.cycle('odd', 'even') }}"><span class="recipient">{{ player['Top Recipient %s' % loop.index] }}</span> <span class="currency">{{ player['Top Recipient 1 Amt']|format_currency }}</span></li>
         {% endfor %}
       </ol>
     </div>

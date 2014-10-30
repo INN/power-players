@@ -6,7 +6,7 @@ import re
 
 from flask import url_for
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
-from project_copy import PlayersCopy
+from copytext import Copy
 from unicodedata import normalize
 
 CACHE = {}
@@ -74,7 +74,7 @@ def get_players_data():
     states = get_state_names()
     for state in states:
         for row in copy[state]:
-            slug = slugify(row['Donor name'])
+            slug = slugify(row['Donor Name'])
             data[slug] = {column: row[column] for column in row._columns}
     return data
 
@@ -97,7 +97,7 @@ def slugify(text, delim=u'-'):
 
 def get_copy():
     if not CACHE.get('copy', None):
-        CACHE['copy'] = PlayersCopy(app_config.COPY_PATH)
+        CACHE['copy'] = Copy(app_config.COPY_PATH)
     return CACHE['copy']
 
 
@@ -175,7 +175,7 @@ def make_context(asset_depth=0):
     """
     context = flatten_app_config()
 
-    context['COPY'] = PlayersCopy(app_config.COPY_PATH)
+    context['COPY'] = Copy(app_config.COPY_PATH)
     context['JS'] = JavascriptIncluder(asset_depth=asset_depth)
     context['CSS'] = CSSIncluder(asset_depth=asset_depth)
 
