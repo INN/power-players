@@ -6,7 +6,7 @@ import re
 
 from flask import url_for
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
-from copytext import Copy
+from project_copy import PlayersCopy
 from unicodedata import normalize
 
 CACHE = {}
@@ -26,7 +26,7 @@ EXCLUDED_STATES = [
 def get_state_names():
     copy = get_copy()
     # Spreadsheet sheet names that are not state names or states that have been excluded
-    not_states = ['content', ] + EXCLUDED_STATES
+    not_states = ['content', 'By Location', ] + EXCLUDED_STATES
     ret = [state for state in json.loads(copy.json()).keys() if state not in not_states]
     ret.sort()
     return ret
@@ -57,6 +57,20 @@ def state_slug_to_name(slug):
     for state in states:
         if state.lower() == slug.replace('-', ' '):
             return state
+
+
+def get_state_contrib_allocations(state):
+    copy = get_copy()
+    ret = {}
+    for row in copy['By Location']:
+        if row['State'] == state:
+            slug = slugify(row['Powerplayer'])
+            tmp = {}
+            for column in row.__dict__['_columns']:
+                if column != 'Powerplayer':
+                    tmp[column] = row[column]
+            ret[slug] = tmp
+    return ret
 
 
 # Individual donors/players
@@ -97,7 +111,7 @@ def slugify(text, delim=u'-'):
 
 def get_copy():
     if not CACHE.get('copy', None):
-        CACHE['copy'] = Copy(app_config.COPY_PATH)
+        CACHE['copy'] = PlayersCopy(app_config.COPY_PATH)
     return CACHE['copy']
 
 
@@ -175,7 +189,7 @@ def make_context(asset_depth=0):
     """
     context = flatten_app_config()
 
-    context['COPY'] = Copy(app_config.COPY_PATH)
+    context['COPY'] = PlayersCopy(app_config.COPY_PATH)
     context['JS'] = JavascriptIncluder(asset_depth=asset_depth)
     context['CSS'] = CSSIncluder(asset_depth=asset_depth)
 

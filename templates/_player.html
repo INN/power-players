@@ -32,15 +32,15 @@
         {% endfor %}
       </ol>
     </div>
-    <div class="donation-breakdown">
+    <div class="donation-breakdown" data-player-slug="{{ player['Donor Name']|slugify }}">
       <h3>Where did the money go?</h3>
       <div class="donation-key">
         <ul>
-          <li class="in-state"><span class="square"></span> In state</li>
-          <li class="out-of-state"><span class="square"></span> Out of state</li>
+          <li class="in-state"><span class="square"></span> State</li>
           <li class="federal"><span class="square"></span> Federal</li>
         </ul>
       </div>
+      <div class="location-container"></div>
     </div>
   </div>
 </div>

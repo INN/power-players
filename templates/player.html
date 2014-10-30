@@ -1,4 +1,4 @@
-{% extends '_empty_base.html' %}
+{% extends '_base.html' %}
 
 {% block header_content %}
 <header>
@@ -6,7 +6,6 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>{{ COPY.content.project_name|smarty }}</h1>
-                <h2>{{ COPY.content.lorem_ipsum|smarty }}</h2>
             </div>
         </div>
     </div>
@@ -20,9 +19,4 @@
 
 
 {% block wide_content %}
-<div class="row">
-    <div class="col-md-12">
-        <p>{{ COPY.content.lorem_ipsum }}</p>
-    </div>
-</div>
 {% endblock %}

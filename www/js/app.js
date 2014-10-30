@@ -26,6 +26,7 @@ var onDocumentLoad = function(e) {
     });
 
     bindPlayerUtils();
+    renderLocationCharts();
 };
 
 /*
@@ -102,5 +103,30 @@ var copyURLModal = function(e) {
 
     $(modal).modal();
 }
+
+/* Where did the money go? */
+var renderLocationCharts = function() {
+    if (typeof STATE_LOCATION_JSON !== 'undefined') {
+        var data = STATE_LOCATION_JSON;
+
+
+        $('.donation-breakdown').each(function() {
+            var container = $(this).find('.location-container'),
+                state = $('<div class="state-location" />'),
+                federal = $('<div class="federal-location" />');
+                slug = $(this).data('player-slug'),
+                player = data[slug];
+
+            state.css('width', (player.pct_state*100) + '%');
+            federal.css('width', (player.pct_federal*100) + '%');
+
+            container.append(state);
+            container.append(federal);
+
+            state.fadeIn();
+            federal.fadeIn();
+        });
+    }
+};
 
 $(onDocumentLoad);

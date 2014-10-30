@@ -160,6 +160,7 @@ i.icon-launch {
   }
   .donation-breakdown {
     float: left;
+    width: 100%;
     h3 {
       margin-top: 20px;
       margin-bottom: 8px;
@@ -180,6 +181,23 @@ i.icon-launch {
         &.out-of-state .square { background: #F8E66D; }
         &.federal .square { background: #2E7294; }
       }
+    }
+    .location-container {
+        clear: both;
+        margin-top: 20px;
+        height: 30px;
+    }
+    .state-location,
+    .federal-location {
+        display: none;
+        height: 30px;
+        display: inline-block;
+    }
+    .state-location {
+        background-color: #8d8480;
+    }
+    .federal-location {
+        background-color: #2E7294;
     }
   }
 }

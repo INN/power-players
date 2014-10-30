@@ -11,7 +11,7 @@ import static
 
 from helpers import make_context, state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
     get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter, \
-    slugify, project_url_for
+    slugify, project_url_for, get_state_contrib_allocations
 
 app = Flask(__name__)
 
@@ -52,9 +52,11 @@ for slug in state_slugs:
         slug = request.path.split('/')[2]
 
         state = state_slug_to_name(slug)
+        contribs = get_state_contrib_allocations(state)
         context['state'] = {
             'name': state,
-            'data': get_state_data(state)
+            'data': get_state_data(state),
+            'location_data': json.dumps(contribs)
         }
 
         return render_template('state.html', **context)
