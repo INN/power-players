@@ -1,7 +1,13 @@
 <div class="player">
   <div class="player-name-image">
     <div class="player-image">
-      <a href="{{ url_for(player['Donor Name']|slugify) }}"><img src="http://www.fillmurray.com/280/320" /></a>
+      <a href="{{ url_for(player['Donor Name']|slugify) }}">
+        {% if player['Picture Link'] %}
+          <img src="{{ player['Picture Link'] }}" />
+        {% else %}
+          <img src="{{ url_for('assets', filename='nophotoimage.png') }}" />
+        {% endif %}
+        </a>
     </div>
     <div class="player-utils" data-player-slug="{{ player['Donor Name']|slugify }}" data-player-name="{{ player['Donor Name'] }}">
       <ul>

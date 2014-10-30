@@ -197,6 +197,14 @@ def make_context(asset_depth=0):
 
 
 def project_url_for(endpoint, **values):
+    # URL for assets dir
+    if endpoint is 'assets' and values.get('filename', None) is not None:
+        if app_config.DEPLOYMENT_TARGET not in ['staging', 'production', ]:
+            return '/assets/' + values.get('filename', None)
+        else:
+            return '/' + app_config.PROJECT_SLUG + '/assets/' + values.get('filename', None)
+
+    # URL for routes defined in app.py
     if app_config.DEPLOYMENT_TARGET not in ['staging', 'production', ]:
         return url_for(endpoint, **values)
     else:
