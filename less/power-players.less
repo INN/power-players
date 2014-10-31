@@ -9,6 +9,15 @@
     font-style: normal;
 }
 
+@darkGray: #484848;
+@lightGray: #a6a6a6;
+
+body {
+    font: 16px/1.5em "Roboto", sans-serif;
+    font-weight: 300;
+    color: @darkGray;
+    -webkit-font-smoothing: antialiased;
+}
 
 a,
 a:link,
@@ -26,6 +35,16 @@ header {
   background-color: transparent;
   h1 {
     text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    a, a:link, a:visited {
+      color: @darkGray;
+    }
+  }
+  .pubdate {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1em;
   }
 }
 
@@ -36,9 +55,8 @@ header {
 .stars3 {
   width: 100%;
   text-align: center;
-
   .star path.shape {
-    fill: #fd8138;
+    fill: #EF9C57;
   }
 }
 
@@ -157,8 +175,8 @@ i.icon-launch {
   }
 
   .player-name {
-    font-family: 'Roboto Condensed bold', sans-serif;
-    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
     font-size: 32px;
     margin-bottom: 4px;
     & > a { color: #484848; }
@@ -184,15 +202,16 @@ i.icon-launch {
 
     .city-state,
     .title-business {
-      font-family: 'Roboto light', sans-serif;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 300;
       font-size: 18px;
       margin: 4px 0;
       padding: 0;
     }
 
     h3 {
-      font-family: 'Roboto bold', sans-serif;
-      font-weight: bold;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 400;
       color: #484848;
     }
 
