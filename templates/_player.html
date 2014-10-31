@@ -32,7 +32,9 @@
       <h3>Top recipients</h3>
       <ol>
         {% for n in range(3) %}
+          {% if player['Top Recipient %s Amt' % loop.index] %}
           <li class="{{ loop.cycle('odd', 'even') }}"><span class="recipient">{{ player['Top Recipient %s' % loop.index] }}</span> <span class="currency">{{ player['Top Recipient %s Amt' % loop.index]|format_currency }}</span></li>
+          {% endif %}
         {% endfor %}
       </ol>
     </div>
