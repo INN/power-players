@@ -8,6 +8,7 @@ from flask import url_for
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
 from project_copy import PlayersCopy
 from unicodedata import normalize
+from werkzeug.routing import BuildError
 
 CACHE = {}
 
@@ -219,15 +220,29 @@ def make_context(asset_depth=0):
 
 
 def project_url_for(endpoint, **values):
+    target = app_config.DEPLOYMENT_TARGET
+    targets = ['staging', 'production', ]
+    filename = values.get('filename', None)
+    project_slug = app_config.PROJECT_SLUG
+
     # URL for assets dir
-    if endpoint is 'assets' and values.get('filename', None) is not None:
-        if app_config.DEPLOYMENT_TARGET not in ['staging', 'production', ]:
-            return '/assets/' + values.get('filename', None)
+    if endpoint is 'assets' and filename is not None:
+        if target not in targets:
+            return '/assets/' + filename
         else:
-            return '/' + app_config.PROJECT_SLUG + '/assets/' + values.get('filename', None)
+            return '/' + project_slug + '/assets/' + filename
 
     # URL for routes defined in app.py
-    if app_config.DEPLOYMENT_TARGET not in ['staging', 'production', ]:
-        return url_for(endpoint, **values)
-    else:
-        return "/" + app_config.PROJECT_SLUG + url_for(endpoint, **values)
+    try:
+        if target not in targets:
+            return url_for(endpoint, **values)
+        else:
+            return "/" + project_slug + url_for(endpoint, **values)
+    except BuildError:
+        if endpoint is 'home':
+            if target not in targets:
+                return '/'
+            else:
+                return '/' + project_slug + '/'
+        else:
+            raise
