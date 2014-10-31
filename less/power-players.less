@@ -161,6 +161,7 @@ i.icon-launch {
   .donation-breakdown {
     float: left;
     width: 100%;
+    margin-bottom: 32px;
     h3 {
       margin-top: 20px;
       margin-bottom: 8px;
@@ -189,15 +190,54 @@ i.icon-launch {
     }
     .state-location,
     .federal-location {
-        display: none;
+        text-align: center;
         height: 30px;
         display: inline-block;
     }
-    .state-location {
+    .state-location .bar,
+    .federal-location .bar {
+        height: 30px;
+        width: 100%;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .state-location .bar {
         background-color: #8d8480;
     }
-    .federal-location {
+    .federal-location .bar {
         background-color: #2E7294;
+    }
+
+    .amount {
+        position: relative;
+    }
+    .amount .amount-top {
+        top: 0;
+        left: 50%;
+        margin-left: -1px;
+        border-width: 1px;
+        border-bottom-color: #555;
+    }
+    .amount-inner {
+        max-width: 200px;
+        padding: 4px 0;
+        color: #343434;
+        text-align: center;
+        text-decoration: none;
+        background-color: transparent;
+        border-radius: 4px;
+        font-size: 16px;
+        margin: 0 auto;
+        position: relative;
+        top: 6px;
+    }
+    .amount-top {
+        position: absolute;
+        width: 0;
+        height: 12px;
+        border-color: #555;
+        border-style: solid;
     }
   }
 }

@@ -111,25 +111,25 @@ var renderLocationCharts = function() {
 
         $('.donation-breakdown').each(function() {
             var container = $(this).find('.location-container'),
-                state = $('<div class="state-location" />'),
-                federal = $('<div class="federal-location" />');
                 slug = $(this).data('player-slug'),
                 player = data[slug];
 
             if (player) {
-                state.css('width', (player.pct_state*100) + '%');
-                state.tooltip({
-                    placement: 'bottom',
-                    title: '$' + Number(player.Total_state).formatMoney()
-                });
-                container.append(state);
+                var state = $(JST.breakdownBars({
+                        type: 'state',
+                        amount: '$' + Number(player.Total_state).formatMoney(),
+                        width: (player.pct_state*100) + '%'
+                    })),
+                    federal = $(JST.breakdownBars({
+                        type: 'federal',
+                        amount: '$' + Number(player.Total_federal).formatMoney(),
+                        width: (player.pct_federal*100) + '%'
+                    }));
 
-                federal.css('width', (player.pct_federal*100) + '%');
-                federal.tooltip({
-                    placement: 'bottom',
-                    title: '$' + Number(player.Total_federal).formatMoney()
-                });
-                container.append(federal);
+                if (Number(player.Total_state) > 0)
+                    container.append(state);
+                if (Number(player.Total_federal) > 0)
+                    container.append(federal);
 
                 state.fadeIn();
                 federal.fadeIn();
