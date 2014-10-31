@@ -6,6 +6,10 @@
                   <a href="{{ url_for('home') }}">{{ COPY.content.project_name|smarty }}</a>
                  </h1>
                  {% include '_three_stars.html' %}
+                <div id="intro-copy">
+                    {{ COPY.content.main_text|safe }}
+                </div>
+                 {% include '_three_stars.html' %}
             </div>
         </div>
     </div>

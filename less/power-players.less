@@ -29,6 +29,10 @@ header {
   }
 }
 
+#content {
+  margin-top: 0;
+}
+
 .stars3 {
   width: 100%;
   text-align: center;
@@ -36,6 +40,11 @@ header {
   .star path.shape {
     fill: #fd8138;
   }
+}
+
+#intro-copy {
+  margin: 20px 18%;
+  width: 64%;
 }
 
 #select-a-state {
@@ -329,6 +338,10 @@ body.embed {
       float: none;
     }
   }
+  #intro-copy {
+    margin: 20px 10%;
+    width: 80%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -373,12 +386,17 @@ body.embed {
       }
     }
   }
+  #intro-copy {
+    margin: 20px 5%;
+    width: 90%;
+  }
 }
 
 @media (max-width: 320px) {
   #select-a-state {
     .state {
       width: 100%;
+      margin-bottom: 1em;
     }
   }
 }
