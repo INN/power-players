@@ -1,17 +1,8 @@
 {% extends '_base.html' %}
 
 {% block header_content %}
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{ COPY.content.project_name|smarty }}</h1>
-            </div>
-        </div>
-    </div>
-</header>
+  {% include '_power_players_header.html' %}
 {% endblock %}
-
 
 {% block content %}
 <h2>{{ state.name }}'s Top Ten Power Players</h2>

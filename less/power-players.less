@@ -9,6 +9,22 @@
     font-style: normal;
 }
 
+header {
+  background-color: transparent;
+  h1 {
+    text-align: center;
+  }
+}
+
+.stars3 {
+  width: 100%;
+  text-align: center;
+
+  .star path.shape {
+    fill: #fd8138;
+  }
+}
+
 #select-a-state {
   float: left;
   margin-bottom: 40px;
@@ -19,7 +35,6 @@
     float: left;
     margin-bottom: 3em;
     text-align: center;
-    /*min-height: 160px;*/
   }
   .name {
     display: block;
@@ -92,10 +107,11 @@ i.icon-launch {
     margin-bottom: 4px;
     & > a { color: #484848; }
   }
-  .player-name-image {
+  .player-image-container{
     float: left;
     width: 30%;
     margin-right: 9%;
+    text-align: center;
     img {
       max-width: 100%;
     }
@@ -127,7 +143,8 @@ i.icon-launch {
     .contributions {
       margin-top: 20px;
       h3 {
-        display: inline;
+        display: inline-block;
+        margin: 0;
       }
       span {
         font-weight: bold;
@@ -251,4 +268,61 @@ i.icon-launch {
 
 .copy-url-modal {
     input { width: 100%; }
+}
+
+/* Invidual player embeds */
+body.embed {
+  .player {
+    margin: 0;
+  }
+  .an-inn-newsapp {
+    margin: 8px 4px 8px 0;
+    float: right;
+  }
+}
+
+/* Media queries */
+@media (max-width: 767px) {
+  .player {
+    .player-image-container {
+      width: 100%;
+    }
+    .player-stats {
+      width: 100%;
+      margin: 0 auto;
+      max-width: 400px;
+      float: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .player {
+    border: 0.85em solid #339da1;
+    .player-stats {
+      h3 {
+          font-size: 1.25em;
+      }
+      .contributions {
+        h3 {
+          margin-bottom: 8px;
+        }
+        text-align: center;
+      }
+
+      .recipients {
+        li {
+          margin-bottom: 10px;
+        }
+        span { display: block; }
+        .recipient,
+        .currency {
+          float: none;
+        }
+        .currency {
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
