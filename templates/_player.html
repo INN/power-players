@@ -20,8 +20,8 @@
 
     {% include '_three_stars.html' %}
 
-    <p class="city-state">{{ player['Donor City'] }}, {{ player['Donor State'] }}</p>
-    <p class="title-business">{{ player['Business Title'] }}, {{ player['Business Name'] }}</p>
+    <p class="city-state">{{ player['Donor City'] }}{% if player['Donor State'] %}, {{ player['Donor State'] }}{% endif %}</p>
+    <p class="title-business">{{ player['Business Title'] }}{% if player['Business Name'] %}, {{ player['Business Name'] }}{% endif %}</p>
 
     <div class="contributions">
       <h3>Total contributions:</h3>
