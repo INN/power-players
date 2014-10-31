@@ -77,8 +77,6 @@ for slug in state_slugs:
             'location_data': json.dumps(contribs)
         }
 
-        print context['state']
-
         return render_template('embed_state.html', **context)
 
 

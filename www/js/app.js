@@ -56,19 +56,25 @@ var onClippyCopy = function(e) {
  */
 var bindPlayerUtils = function() {
     $('.player-utils li a').click(function(e) {
-        if ($(this).hasClass('embed'))
+        if ($(this).hasClass('embed')) {
             embedModal(e, 'player');
-        if ($(this).hasClass('copy-link'))
+            return false;
+        }
+        if ($(this).hasClass('copy-link')) {
             copyURLModal(e);
-        return false;
+            return false;
+        }
+        return true;
     });
 };
 
 var bindStateUtils = function() {
     $('.state-utils li a').click(function(e) {
-        if ($(this).hasClass('embed'))
+        if ($(this).hasClass('embed')) {
             embedModal(e, 'state');
-        return false;
+            return false;
+        }
+        return true;
     });
 };
 

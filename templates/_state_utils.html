@@ -1,5 +1,6 @@
 <div class="state-utils" data-state-slug="{{ state.name|slugify }}" data-state-name="{{ state.name }}">
   <ul>
-    <li><a class="embed" href="#"><i class="icon icon-embed"></i> Embed this list on your site</a></li>
+    <li class="embed-this-state"><a class="embed" href="#"><i class="icon icon-embed"></i> Embed this state</a></li>
+    <li class="show-all-states"><a href="{{ url_for('home') }}">&laquo; Show all states</a></li>
   </ul>
 </div>

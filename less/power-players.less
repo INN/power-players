@@ -115,8 +115,27 @@ i.icon-launch {
   background-image: url('../assets/icons/ic_launch_black_48dp.png');
 }
 
+.state-header {
+  h2, h3 {
+    color: @darkGray;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  h2 {
+    font-weight: 700;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+}
+
 .state-utils {
-  margin-bottom: 24px;
+  position: relative;
+  margin: 24px 0;
+  height: 1em;
+  text-transform: uppercase;
+
   ul, li {
     list-style-type: none;
     margin: 0;
@@ -127,6 +146,14 @@ i.icon-launch {
     &:hover {
       color: #343434;
     }
+  }
+  .embed-this-state {
+    position: absolute;
+    right: 0;
+  }
+  .show-all-states {
+    position: absolute;
+    left: 0;
   }
 }
 
@@ -154,12 +181,12 @@ i.icon-launch {
 
     li {
       font-size: 0.85em;
-      margin: 0 0 8px 1em;
+      margin: 0 0 8px 0;
       i { margin-right: 8px; }
       a {
-        color: #555;
+        color: @darkGray;
         &:hover {
-          color: #343434;
+          color: @lightGray;
         }
       }
     }
@@ -167,8 +194,10 @@ i.icon-launch {
 
   .player-utils-xs {
     .player-utils {
-      border-top: 1px solid #ccc;
-      margin: 28px 0 0 0;
+      font-family: "Roboto Condensed", sans-serif;
+      font-weight: 300;
+      font-size: 24px;
+      margin: 24px 0 0 0;
     }
     text-align: center;
     li { margin: 18px 0; }
@@ -179,7 +208,9 @@ i.icon-launch {
     font-weight: 400;
     font-size: 32px;
     margin-bottom: 4px;
-    & > a { color: #484848; }
+    & > a {
+      color: @darkGray;
+    }
   }
   .player-image-container {
     float: left;
@@ -222,7 +253,8 @@ i.icon-launch {
         margin: 0;
       }
       span {
-        font-weight: bold;
+        font-family: "Roboto Condensed", sans-serif;
+        font-weight: 400;
         font-size: 24px;
         color: #484848;
       }
@@ -400,6 +432,22 @@ body.embed {
   #select-a-state {
     .state {
       width: 33%;
+    }
+  }
+  .state-utils {
+    position: relative;
+    margin: 24px 0;
+    height: auto;
+    text-transform: uppercase;
+    text-align: center;
+
+    li {
+      margin: 0 0 0.5em 0;
+    }
+
+    .show-all-states,
+    .embed-this-state {
+      position: relative;
     }
   }
 }

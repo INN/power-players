@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block content %}
-<h2>{{ state.name }}'s Top Ten Power Players</h2>
+<div class="state-header">
+  <h2>{{ state.name }}</h2>
+  <h3>Top 10 Power Players</h3>
+</div>
 {% include '_state_utils.html' %}
 <div class="player-list">
   {% for player in state.data[:10] %}
