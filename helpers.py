@@ -73,13 +73,35 @@ def get_state_contrib_allocations(state):
     return ret
 
 
+def get_player_contrib_allocations(name):
+    slug = slugify(name)
+    state = get_player_state(name)
+    data = get_state_contrib_allocations(state)
+    try:
+        return { slugify(name): data[slug] }
+    except KeyError:
+        return None
+
+
 # Individual donors/players
 def get_player_data(name):
     data = get_players_data()
     try:
-        return data[slugify(unicode(name))]
+        ret = data[slugify(unicode(name))]
+        ret['location_data'] = json.dumps(get_player_contrib_allocations(name))
+        return ret
     except KeyError:
         return None
+
+
+def get_player_state(name):
+    copy = get_copy()
+    states = get_state_names()
+    for state in states:
+        for row in copy[state]:
+            if row['Donor Name'] == name or slugify(row['Donor Name']) == name:
+                return state
+    return None
 
 
 def get_players_data():

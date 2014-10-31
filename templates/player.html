@@ -12,11 +12,12 @@
 </header>
 {% endblock %}
 
-
 {% block content %}
   {% include '_player.html' %}
 {% endblock %}
 
-
-{% block wide_content %}
-{% endblock %}
+{% block extra_foot_js %}
+<script type="text/javascript">
+  var STATE_LOCATION_JSON = PLAYER_LOCATION_JSON = {{ player.location_data|safe }};
+</script>
+{% endblock extra_foot_js %}
