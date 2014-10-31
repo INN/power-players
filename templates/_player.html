@@ -32,7 +32,7 @@
       <h3>Top recipients</h3>
       <ol>
         {% for n in range(3) %}
-          <li class="{{ loop.cycle('odd', 'even') }}"><span class="recipient">{{ player['Top Recipient %s' % loop.index] }}</span> <span class="currency">{{ player['Top Recipient 1 Amt']|format_currency }}</span></li>
+          <li class="{{ loop.cycle('odd', 'even') }}"><span class="recipient">{{ player['Top Recipient %s' % loop.index] }}</span> <span class="currency">{{ player['Top Recipient %s Amt' % loop.index]|format_currency }}</span></li>
         {% endfor %}
       </ol>
     </div>
