@@ -199,7 +199,6 @@ i.icon-launch {
       font-size: 24px;
       margin: 24px 0 0 0;
     }
-    text-align: center;
     li { margin: 18px 0; }
   }
 
@@ -216,7 +215,7 @@ i.icon-launch {
     float: left;
     width: 30%;
     margin-right: 2.5%;
-    text-align: center;
+    /*text-align: center;*/
     img {
       max-width: 100%;
     }
@@ -272,13 +271,17 @@ i.icon-launch {
         margin: 0;
         padding: 0;
       }
-      li {
-        list-style-position: inside;
+      ol {
+        margin-left: 22px;
       }
-
+      li {
+        margin-bottom: 20px;
+      }
+      .recipient {
+        /*float: left;*/
+      }
       .currency {
         float: right;
-        margin-left: 20px;
       }
     }
   }
@@ -409,6 +412,7 @@ body.embed {
     .player-image-container {
       width: 100%;
       margin-right: 5%;
+      text-align: center;
     }
     .player-stats {
       width: 100%;
@@ -463,7 +467,6 @@ body.embed {
         h3 {
           margin-bottom: 8px;
         }
-        text-align: center;
       }
 
       .recipients {

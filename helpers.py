@@ -196,7 +196,7 @@ def state_name_to_stateface_letter(name):
 
 def format_currency_filter(value):
     try:
-        return "${:,.2f}".format(float(value))
+        return "${:,.2f}".format(float(value)).replace('.00', '')
     except:
         return None
 
