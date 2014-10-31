@@ -6,6 +6,7 @@
 
 {% block content %}
 <h2>{{ state.name }}'s Top Ten Power Players</h2>
+{% include '_state_utils.html' %}
 <div class="player-list">
   {% for player in state.data[:10] %}
     {% include '_player.html' %}

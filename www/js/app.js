@@ -18,6 +18,7 @@ var onDocumentLoad = function(e) {
     $shareModal.on('hidden.bs.modal', onShareModalHidden);
 
     bindPlayerUtils();
+    bindStateUtils();
     renderLocationCharts();
 };
 
@@ -56,26 +57,35 @@ var onClippyCopy = function(e) {
 var bindPlayerUtils = function() {
     $('.player-utils li a').click(function(e) {
         if ($(this).hasClass('embed'))
-            embedModal(e);
+            embedModal(e, 'player');
         if ($(this).hasClass('copy-link'))
             copyURLModal(e);
         return false;
     });
 };
 
-var embedModal = function(e) {
+var bindStateUtils = function() {
+    $('.state-utils li a').click(function(e) {
+        if ($(this).hasClass('embed'))
+            embedModal(e, 'state');
+        return false;
+    });
+};
+
+var embedModal = function(e, type) {
     var target = $(e.currentTarget).parent().parent().parent(),
-        slug = target.data('player-slug'),
-        name = target.data('player-name'),
+        slug = target.data(type + '-slug'),
+        name = target.data(type + '-name'),
         deployment_target = APP_CONFIG.DEPLOYMENT_TARGET,
-        embed_url = APP_CONFIG.S3_BASE_URL + '/embed/player/' + slug + '/',
+        embed_url = APP_CONFIG.S3_BASE_URL + '/embed/' + type + '/' + slug + '/',
         pym_url = APP_CONFIG.S3_BASE_URL + '/assets/js/pym.js';
 
     var modal = JST.embedModal({
         embed_url: embed_url,
         pym_url: pym_url,
         slug: slug,
-        name: name
+        name: name,
+        type: type
     });
 
     $(modal).modal();

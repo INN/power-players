@@ -97,6 +97,21 @@ i.icon-launch {
   background-image: url('../assets/icons/ic_launch_black_48dp.png');
 }
 
+.state-utils {
+  margin-bottom: 24px;
+  ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    color: #555;
+    &:hover {
+      color: #343434;
+    }
+  }
+}
+
 .player {
   float: left;
   clear: both;
@@ -124,7 +139,10 @@ i.icon-launch {
       margin: 0 0 8px 1em;
       i { margin-right: 8px; }
       a {
-        color: #484848;
+        color: #555;
+        &:hover {
+          color: #343434;
+        }
       }
     }
   }
@@ -316,6 +334,21 @@ body.embed {
   .an-inn-newsapp {
     margin: 8px 4px 8px 0;
     float: right;
+    a {
+      color: #343434;
+      &:hover {
+        color: #555;
+      }
+    }
+  }
+  .player {
+    margin: 24px 0;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

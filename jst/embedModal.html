@@ -6,7 +6,7 @@
         <h4 class="modal-title" id="modalLabel">Embed: <%= name %></h4>
       </div>
       <div class="modal-body">
-        <p>Use the code below to embed <%= name %>'s card.</p>
+        <p>Use the code below to embed <% if (type == 'state') { %>the <% } %><%= name %><% if (type == 'state') { %> Power Players list on your site.<% } else { %>'s card.<% } %></p>
         <textarea>
 <div id="<%= slug %>-container"></div>
 <script src="<%= pym_url %>"></script>

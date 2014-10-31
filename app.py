@@ -62,6 +62,25 @@ for slug in state_slugs:
 
         return render_template('state.html', **context)
 
+    @app.route('/embed/state/%s/' % slug, endpoint='embed-%s' % slug)
+    def state():
+        context = make_context()
+
+        from flask import request
+        slug = request.path.split('/')[3]
+
+        state = state_slug_to_name(slug)
+        contribs = get_state_contrib_allocations(state)
+        context['state'] = {
+            'name': state,
+            'data': get_state_data(state),
+            'location_data': json.dumps(contribs)
+        }
+
+        print context['state']
+
+        return render_template('embed_state.html', **context)
+
 
 player_slugs = get_player_slugs()
 for slug in player_slugs:

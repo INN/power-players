@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ COPY.content.project_name }}</title>
+
+    <!-- META TAGS -->
+    {% include '_meta.html' %}
+
+    <!-- CHARTBEAT -->
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
+    <!-- FONTS -->
+    {% include '_fonts.html' %}
+
+    <!-- CSS -->
+    {{ CSS.push('less/app.less') }}
+    {% block extra_css %}
+    <style type="text/css">
+        body {
+            float: left;
+            width: 100%;
+        }
+    </style>
+    {% endblock extra_css %}
+    {{ CSS.render('css/app.min.css') }}
+
+    <!-- JS -->
+    {{ JS.push('js/lib/modernizr.js') }}
+    {{ JS.render('js/app-header.min.js') }}
+
+    {% include '_social_tags.html' %}
+
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+<body class="embed">
+  <div class="player-list">
+    {% for player in state.data[:10] %}
+      {% include '_player.html' %}
+    {% endfor %}
+  </div>
+
+  {% include '_branding_link.html' %}
+
+<script type="text/javascript">
+  var STATE_LOCATION_JSON = {{ state.location_data|safe }};
+</script>
+
+  {{ JS.push('js/lib/jquery.js') }}
+  {{ JS.push('js/lib/underscore.js') }}
+  {{ JS.push('js/lib/bootstrap.js') }}
+  {{ JS.push('js/app_config.js') }}
+  {{ JS.push('js/console.js') }}
+  {{ JS.push('js/templates.js') }}
+  {{ JS.push('assets/js/pym.js') }}
+  {{ JS.push('js/app.js') }}
+  {{ JS.push('js/analytics.js') }}
+  {{ JS.render('js/embed-footer.min.js') }}
+  <script type="text/javascript">
+    var pymChild = new pym.Child();
+  </script>
+</body>
+</html>
