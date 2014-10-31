@@ -9,6 +9,19 @@
     font-style: normal;
 }
 
+
+a,
+a:link,
+a:visited {
+    color: #339da1;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #278487;
+    text-decoration: none;
+}
+
 header {
   background-color: transparent;
   h1 {
@@ -32,9 +45,16 @@ header {
 
   .state {
     width: 20%;
+    min-width: 144px;
     float: left;
     margin-bottom: 3em;
     text-align: center;
+    .name {
+      color: #777;
+    }
+    &:hover .name {
+      color: #555;
+    }
   }
   .name {
     display: block;
@@ -292,6 +312,11 @@ body.embed {
 
 /* Media queries */
 @media (max-width: 767px) {
+  #select-a-state {
+    .state {
+      width: 25%;
+    }
+  }
   .player {
     .player-image-container {
       width: 100%;
@@ -306,7 +331,20 @@ body.embed {
   }
 }
 
+@media (max-width: 600px) {
+  #select-a-state {
+    .state {
+      width: 33%;
+    }
+  }
+}
+
 @media (max-width: 480px) {
+  #select-a-state {
+    .state {
+      width: 50%;
+    }
+  }
   .player {
     border: 0.85em solid #339da1;
     .player-stats {
@@ -333,6 +371,14 @@ body.embed {
           font-weight: bold;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  #select-a-state {
+    .state {
+      width: 100%;
     }
   }
 }
