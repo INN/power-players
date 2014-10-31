@@ -38,6 +38,7 @@ def index():
         context['featured'] = json.load(f)
 
     context['states'] = get_state_slug_name_map()
+    context['is_home'] = True
 
     return render_template('index.html', **context)
 
