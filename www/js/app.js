@@ -134,10 +134,21 @@ var renderLocationCharts = function() {
                         width: (player.pct_federal*100) + '%'
                     }));
 
+                var one_bar = false;
                 if (Number(player.Total_state) > 0)
                     container.append(state);
+                else
+                    one_bar = true;
+
                 if (Number(player.Total_federal) > 0)
                     container.append(federal);
+                else
+                    one_bar = true;
+
+                if (one_bar)
+                    container.parent().addClass('one-bar');
+                else
+                    container.parent().addClass('two-bars');
 
                 state.fadeIn();
                 federal.fadeIn();

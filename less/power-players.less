@@ -336,12 +336,14 @@ i.icon-launch {
     .amount {
         position: relative;
     }
-    .amount .amount-top {
+    .amount-top {
+        position: absolute;
+        width: 0;
+        height: 16px;
         top: 0;
         left: 50%;
-        margin-left: -1px;
-        border-width: 1px;
-        border-bottom-color: #555;
+        margin-left: 1px;
+        border-left: 1px solid @darkGray;
     }
     .amount-inner {
         max-width: 200px;
@@ -354,14 +356,7 @@ i.icon-launch {
         font-size: 16px;
         margin: 0 auto;
         position: relative;
-        top: 6px;
-    }
-    .amount-top {
-        position: absolute;
-        width: 0;
-        height: 12px;
-        border-color: #555;
-        border-style: solid;
+        top: 12px;
     }
   }
 }
@@ -482,6 +477,17 @@ body.embed {
         }
         .currency {
           font-weight: bold;
+        }
+      }
+    }
+    .donation-breakdown.two-bars {
+      margin-bottom: 60px;
+      .federal-location {
+        .amount-top {
+          height: 38px;
+        }
+        .amount-inner {
+          top: 34px;
         }
       }
     }
