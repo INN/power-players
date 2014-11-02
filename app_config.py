@@ -107,7 +107,7 @@ SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 SERVICES
 """
 GOOGLE_ANALYTICS = {
-    'ACCOUNT_ID': 'UA-5828686-4', # TODO: Replace INN's UA code
+    'ACCOUNT_ID': 'UA-17578670-10', # apps.investigativenewsnetwork.org
     'DOMAIN': PRODUCTION_S3_BUCKETS[0],
     'TOPICS': '' # e.g. '[1014,3,1003,1002,1001]'
 }
