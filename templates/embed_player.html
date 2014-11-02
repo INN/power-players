@@ -37,11 +37,6 @@
 <body class="embed">
   {% include '_player.html' %}
   {% include '_branding_link.html' %}
-
-<script type="text/javascript">
-  var STATE_LOCATION_JSON = PLAYER_LOCATION_JSON = {{ player.location_data|safe }};
-</script>
-
   {{ JS.push('js/lib/jquery.js') }}
   {{ JS.push('js/lib/underscore.js') }}
   {{ JS.push('js/lib/bootstrap.js') }}

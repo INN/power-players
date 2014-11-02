@@ -4,7 +4,8 @@ import copytext
 import json
 import re
 
-from flask import url_for
+from decimal import Decimal
+from flask import url_for, render_template
 from render_utils import flatten_app_config, JavascriptIncluder, CSSIncluder
 from project_copy import PlayersCopy
 from unicodedata import normalize
@@ -82,6 +83,23 @@ def get_player_contrib_allocations(name):
         return { slugify(name): data[slug] }
     except KeyError:
         return None
+
+
+def render_player_location_chart(name):
+    ret = ''
+    types = ['state', 'federal', ]
+    for type in types:
+        context = {
+            'type': type
+        }
+        contribs = get_player_contrib_allocations(name)
+        player = contribs[contribs.keys()[0]]
+        context['amount'] = format_currency_filter(player.get('Total_%s' % type))
+        pct = player.get('pct_%s' % type)
+        if pct:
+            context['width'] = str(float(pct) * 100) + "%"
+            ret += render_template('_breakdown_bars.html', **context)
+    return ret
 
 
 # Individual donors/players

@@ -42,11 +42,6 @@
   </div>
 
   {% include '_branding_link.html' %}
-
-<script type="text/javascript">
-  var STATE_LOCATION_JSON = {{ state.location_data|safe }};
-</script>
-
   {{ JS.push('js/lib/jquery.js') }}
   {{ JS.push('js/lib/underscore.js') }}
   {{ JS.push('js/lib/bootstrap.js') }}

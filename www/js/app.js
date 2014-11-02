@@ -19,7 +19,6 @@ var onDocumentLoad = function(e) {
 
     bindPlayerUtils();
     bindStateUtils();
-    renderLocationCharts();
 };
 
 /*
@@ -111,65 +110,5 @@ var copyURLModal = function(e) {
 
     $(modal).modal();
 }
-
-/* Where did the money go? */
-var renderLocationCharts = function() {
-    if (typeof STATE_LOCATION_JSON !== 'undefined') {
-        var data = STATE_LOCATION_JSON;
-
-        $('.donation-breakdown').each(function() {
-            var container = $(this).find('.location-container'),
-                slug = $(this).data('player-slug'),
-                player = data[slug];
-
-            if (player) {
-                var state = $(JST.breakdownBars({
-                        type: 'state',
-                        amount: '$' + Number(player.Total_state).formatMoney().replace(/\.00$/, ''),
-                        width: (player.pct_state*100) + '%'
-                    })),
-                    federal = $(JST.breakdownBars({
-                        type: 'federal',
-                        amount: '$' + Number(player.Total_federal).formatMoney().replace(/\.00$/, ''),
-                        width: (player.pct_federal*100) + '%'
-                    }));
-
-                var one_bar = false;
-                if (Number(player.Total_state) > 0)
-                    container.append(state);
-                else
-                    one_bar = true;
-
-                if (Number(player.Total_federal) > 0)
-                    container.append(federal);
-                else
-                    one_bar = true;
-
-                if (one_bar)
-                    container.parent().addClass('one-bar');
-                else
-                    container.parent().addClass('two-bars');
-
-                state.fadeIn();
-                federal.fadeIn();
-            } else
-                console.log("Couldn't find player: " + slug);
-        });
-    }
-};
-
-// From http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
-Number.prototype.formatMoney = function(c, d, t){
-    var n = this,
-        c = isNaN(c = Math.abs(c)) ? 2 : c,
-        d = d == undefined ? "." : d,
-        t = t == undefined ? "," : t,
-        s = n < 0 ? "-" : "",
-        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
-        j = (j = i.length) > 3 ? j % 3 : 0;
-    return s + (j ? i.substr(0, j) + t : "") +
-        i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) +
-        (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-};
 
 $(onDocumentLoad);
