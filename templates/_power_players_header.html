@@ -6,13 +6,12 @@
                   <a href="{{ url_for('home') }}">{{ COPY.content.project_name|smarty }}</a>
                 </h1>
                 <div class="pubdate">{{ COPY.content.pubdate }}</div>
-                 {% include '_three_stars.html' %}
+                {% include '_three_stars.html' %}
                 {% if is_home %}
                   <div id="intro-copy">
                       {{ COPY.content.main_text|safe }}
                   </div>
-                   {% include '_three_stars.html' %}
-                 {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
