@@ -48,6 +48,11 @@ header {
   }
 }
 
+.modal {
+    position: absolute;
+    background: rgba(1, 1, 1, 0.5);
+}
+
 #content {
   margin-top: 0;
 }
@@ -158,6 +163,7 @@ i.icon-launch {
 }
 
 .player {
+  position: relative;
   float: left;
   clear: both;
   margin: 0 0 40px 0;
@@ -446,6 +452,12 @@ body.embed {
     .embed-this-state {
       position: relative;
     }
+  }
+  .modal-dialog {
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    margin: 2.5%;
   }
 }
 

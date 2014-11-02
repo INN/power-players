@@ -83,7 +83,8 @@ var embedModal = function(e, type) {
         name = target.data(type + '-name'),
         deployment_target = APP_CONFIG.DEPLOYMENT_TARGET,
         embed_url = APP_CONFIG.S3_BASE_URL + '/embed/' + type + '/' + slug + '/',
-        pym_url = APP_CONFIG.S3_BASE_URL + '/assets/js/pym.js';
+        pym_url = APP_CONFIG.S3_BASE_URL + '/assets/js/pym.js',
+        player_container = target.closest('.' + type);
 
     var modal = JST.embedModal({
         embed_url: embed_url,
@@ -93,7 +94,10 @@ var embedModal = function(e, type) {
         type: type
     });
 
-    $(modal).modal();
+    if (type == 'state')
+        $(modal).modal();
+    else
+        powerPlayerModal(modal, player_container);
 };
 
 var copyURLModal = function(e) {
@@ -101,14 +105,25 @@ var copyURLModal = function(e) {
         slug = target.data('player-slug'),
         name = target.data('player-name'),
         deployment_target = APP_CONFIG.DEPLOYMENT_TARGET,
-        url = APP_CONFIG.S3_BASE_URL + '/player/' + slug + '/';
+        url = APP_CONFIG.S3_BASE_URL + '/player/' + slug + '/',
+        player_container = target.closest('.player');
 
     var modal = JST.copyURLModal({
         url: url,
         name: name
     });
 
-    $(modal).modal();
+    powerPlayerModal(modal, player_container);
+}
+
+var powerPlayerModal = function(elem, container) {
+    var $elem = $(elem), $container = $(container);
+
+    $elem.on('click', '.exit', function(e) {
+        $elem.remove();
+    });
+    $elem.show();
+    $container.append($elem);
 }
 
 $(onDocumentLoad);
