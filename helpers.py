@@ -93,12 +93,13 @@ def render_player_location_chart(name):
             'type': type
         }
         contribs = get_player_contrib_allocations(name)
-        player = contribs[contribs.keys()[0]]
-        context['amount'] = format_currency_filter(player.get('Total_%s' % type))
-        pct = player.get('pct_%s' % type)
-        if pct:
-            context['width'] = str(float(pct) * 100) + "%"
-            ret += render_template('_breakdown_bars.html', **context)
+        if contribs:
+            player = contribs[contribs.keys()[0]]
+            context['amount'] = format_currency_filter(player.get('Total_%s' % type))
+            pct = player.get('pct_%s' % type)
+            if pct:
+                context['width'] = str(float(pct) * 100) + "%"
+                ret += render_template('_breakdown_bars.html', **context)
     return ret
 
 
