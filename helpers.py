@@ -164,6 +164,7 @@ def state_name_to_stateface_letter(name):
         'Arizona': 'D',
         'Arkansas': 'C',
         'California': 'E',
+        'San Diego': 'E', # Special Case for Power Players app
         'Colorado': 'F',
         'Connecticut': 'G',
         'Delaware': 'H',

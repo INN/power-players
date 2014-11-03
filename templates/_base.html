@@ -31,6 +31,7 @@
     <nav role="navigation">
         <ul class="site-links">
             <li class="inn"><a title="Investigative News Network" href="http://www.investigativenewsnetwork.org">INN</a></li>
+            <li><a href="{{ url_for('home') }}">Power Players</a></li>
         </ul>
         <ul class="social-links">
             <li class="twitter"><a rel="external" href="http://twitter.com/share?text={{ COPY.sharing.twitter_text|urlencode }}&amp;url={{ SHARE_URL|urlencode }}" alt="Share on Twitter" target="_blank" onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'tweet', 'nav']);">Share This Page On Twitter</a></li>
