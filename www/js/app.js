@@ -19,6 +19,8 @@ var onDocumentLoad = function(e) {
 
     bindPlayerUtils();
     bindStateUtils();
+
+    $('.location-popover').popover();
 };
 
 /*
