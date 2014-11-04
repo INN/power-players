@@ -12,6 +12,10 @@
 @darkGray: #484848;
 @lightGray: #a6a6a6;
 
+@teal: #339da1;
+@otherTeal: #278487;
+@navLinks: #f4f1e8;
+
 body {
     font: 16px/1.5em "Roboto", sans-serif;
     font-weight: 300;
@@ -22,12 +26,12 @@ body {
 a,
 a:link,
 a:visited {
-    color: #339da1;
+    color: @teal;
     text-decoration: none;
 }
 
 a:hover, a:active {
-    color: #278487;
+    color: @otherTeal;
     text-decoration: none;
 }
 
@@ -45,6 +49,47 @@ header {
     width: 100%;
     text-align: center;
     margin-bottom: 1em;
+  }
+}
+
+nav {
+  background-color: @teal;
+  a,
+  a:link, a:visited {
+    color: @navLinks;
+  }
+  a:hover, a:active {
+    opacity: 0.7;
+  }
+
+  ul.site-links {
+    margin-left: 10px;
+  }
+
+  ul.social-links {
+      background-color: @teal;
+    .twitter a {
+      background: url('../assets/icons/social-twitter-white.svg') center center no-repeat;
+      background-size: 44px auto;
+      border-right: 1px solid #74b1b2;
+    }
+    .facebook a {
+      background: url('../assets/icons/social-facebook-white.svg') center center no-repeat;
+      background-size: 44px auto;
+    }
+  }
+
+  .inn-image {
+    a {
+      display: block;
+      width: 60px;
+      height: 44px;
+      background: url('../assets/icons/INNlogo_white.png') no-repeat center center;
+      background-size: 60px auto;
+    }
+    border-right: 1px solid #74b1b2;
+    padding-right: 10px;
+    span { display: none; }
   }
 }
 
@@ -175,7 +220,7 @@ i.icon-launch {
   margin: 0 0 40px 0;
   width: 100%;
   padding: 1em;
-  border: 1em solid #339da1;
+  border: 1em solid @teal;
 
   ul {
     margin: 0;
@@ -489,7 +534,7 @@ body.embed {
     }
   }
   .player {
-    border: 0.85em solid #339da1;
+    border: 0.85em solid @teal;
     .player-stats {
       h3 {
           font-size: 1.25em;
@@ -530,6 +575,11 @@ body.embed {
   #intro-copy {
     margin: 20px 5%;
     width: 90%;
+  }
+
+  nav ul.site-links li {
+    display: block;
+    &.app-home { display: none; }
   }
 }
 

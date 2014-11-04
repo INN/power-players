@@ -2,8 +2,10 @@
   <ul>
     <li><a class="embed" href="#"><i class="icon icon-embed"></i> Embed this card</a></li>
     <li><a class="copy-link" href="#"><i class="icon icon-link"></i> Copy link to this card</a></li>
+    {#
     {% if embed %}
     <li><a class="view-state" href="{{ url_for(get_player_state(player['Donor Name'])|slugify) }}"><i class="icon icon-launch"></i> View entire state</a></li>
     {% endif %}
+    #}
   </ul>
 </div>
