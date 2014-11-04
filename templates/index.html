@@ -11,6 +11,7 @@
     <a href="state/{{ slug }}">
       <span class="icon">{{ state|stateface }}</span>
       <span class="name">{{ state }}</span>
+      <span class="member-name">{{ COPY.content['%s_member_name' % state|slugify] }}</span>
     </a>
   </div>
 {% endfor %}
