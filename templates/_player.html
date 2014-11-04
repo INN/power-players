@@ -8,6 +8,9 @@
           <img src="{{ url_for('assets', filename='nophotoimage.png') }}" />
         {% endif %}
         </a>
+        {% if player['Picturecredit'] %}
+          <span class="image-credit">{{ player['Picturecredit'] }}</span>
+        {% endif %}
     </div>
   <div class="visible-sm visible-md visible-lg">
     {% include '_player_utils.html' %}
