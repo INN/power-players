@@ -11,7 +11,7 @@ import static
 
 from helpers import make_context, state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
     get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter, \
-    slugify, project_url_for, render_player_location_chart
+    slugify, project_url_for, render_player_location_chart, location_chart_class
 
 app = Flask(__name__)
 
@@ -26,6 +26,7 @@ app.jinja_env.filters['slugify'] = slugify
 # Power Players functions
 app.jinja_env.globals.update(url_for=project_url_for)
 app.jinja_env.globals.update(location_chart=render_player_location_chart)
+app.jinja_env.globals.update(location_chart_class=location_chart_class)
 
 
 @app.route('/')

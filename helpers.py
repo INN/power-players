@@ -103,6 +103,25 @@ def render_player_location_chart(name):
     return ret
 
 
+def location_chart_class(name):
+    ret = ''
+    types = ['state', 'federal', ]
+    number_of_bars = 0
+    for type in types:
+        contribs = get_player_contrib_allocations(name)
+        if contribs:
+            player = contribs[contribs.keys()[0]]
+            pct = player.get('pct_%s' % type)
+            if pct:
+                number_of_bars += 1
+
+    if number_of_bars == 1:
+        return 'one-bar'
+    if number_of_bars == 2:
+        return 'two-bars'
+    return ''
+
+
 # Individual donors/players
 def get_player_data(name):
     data = get_players_data()
