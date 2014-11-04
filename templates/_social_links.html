@@ -1,13 +1,13 @@
 <ul class="social-links">
     <li class="twitter">
       <a rel="external"
-        href="http://twitter.com/share?text={{ COPY.sharing.twitter_text|urlencode }}&amp;url={{ SHARE_URL|urlencode }}" alt="Share on Twitter" 
+        href="http://twitter.com/share?text={{ COPY.share.twitter_text|urlencode }}&amp;url={{ COPY.share.share_url|urlencode }}" alt="Share on Twitter" 
         target="_blank"
         onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'tweet', 'nav']);">Share This Page On Twitter</a>
     </li>
     <li class="facebook">
       <a rel="external"
-        href="https://www.facebook.com/dialog/feed?app_id={{ FACEBOOK_APP_ID }}&amp;link={{ SHARE_URL|urlencode }}&amp;name={{ COPY.sharing.facebook_title|urlencode }}&amp;picture={{ FACEBOOK_IMAGE_URL|urlencode }}&amp;redirect_uri={{ SHARE_URL|urlencode }}"
+        href="https://www.facebook.com/dialog/feed?app_id={{ COPY.share.facebook_app_id }}&amp;link={{ COPY.share.share_url|urlencode }}&amp;name={{ COPY.share.facebook_title|urlencode }}&amp;picture={{ COPY.share.facebook_image_url|urlencode }}&amp;redirect_uri={{ COPY.share.share_url|urlencode }}"
         alt="Share on Facebook"
         target="_blank"
         onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'facebook', 'nav']);">Like This Page On Facebook</a>
