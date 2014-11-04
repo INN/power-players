@@ -34,11 +34,19 @@
     {% block extra_head %}
     {% endblock extra_head %}
 </head>
-<body class="embed">
+<body class="embed state">
   <div class="player-list">
     {% for player in state.data[:10] %}
       {% include '_player.html' %}
     {% endfor %}
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+          <p>{{ COPY.content.about_data }}</p>
+          <p>{{ COPY.content.data_sources }}</p>
+          <p>{{ COPY.content.data_url }}</p>
+      </div>
   </div>
 
   {% include '_branding_link.html' %}

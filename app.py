@@ -11,7 +11,7 @@ import static
 
 from helpers import make_context, state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
     get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter, \
-    slugify, project_url_for, render_player_location_chart, location_chart_class
+    slugify, project_url_for, render_player_location_chart, location_chart_class, get_player_state
 
 app = Flask(__name__)
 
@@ -27,6 +27,7 @@ app.jinja_env.filters['slugify'] = slugify
 app.jinja_env.globals.update(url_for=project_url_for)
 app.jinja_env.globals.update(location_chart=render_player_location_chart)
 app.jinja_env.globals.update(location_chart_class=location_chart_class)
+app.jinja_env.globals.update(get_player_state=get_player_state)
 
 
 @app.route('/')
@@ -72,7 +73,8 @@ for slug in state_slugs:
         state = state_slug_to_name(slug)
         context['state'] = {
             'name': state,
-            'data': get_state_data(state)
+            'data': get_state_data(state),
+            'embed': True
         }
 
         return render_template('embed_state.html', **context)
@@ -104,6 +106,7 @@ for slug in player_slugs:
         player = get_player_data(slug)
         if player:
             context['player'] = player
+            context['embed'] = True
             return render_template('embed_player.html', **context)
         else:
             return 404
