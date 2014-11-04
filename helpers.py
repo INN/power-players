@@ -21,14 +21,15 @@ EXCLUDED_STATES = [
     'Pennsylvania',
     'Maine',
     'Montana',
-    'New York'
+    'New York',
+    'Ohio',
 ]
 
 # State data
 def get_state_names():
     copy = get_copy()
     # Spreadsheet sheet names that are not state names or states that have been excluded
-    not_states = ['content', 'By Location', ] + EXCLUDED_STATES
+    not_states = ['content', 'share', 'By Location', ] + EXCLUDED_STATES
     ret = [state for state in json.loads(copy.json()).keys() if state not in not_states]
     ret.sort()
     return ret
