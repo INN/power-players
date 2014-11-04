@@ -12,6 +12,18 @@
                       {{ COPY.content.main_text|safe }}
                   </div>
                 {% endif %}
+                {% if is_state %}
+                  <div class="state-header">
+                    <h2>{{ state.name }}</h2>
+                    <h3 class="member-name">{{ COPY.content['%s_member_name' % state.name|slugify] }}</h3>
+                    {% if COPY.content['%s_blurb' % state.name|slugify] %}
+                      <div id="state-intro-copy">
+                          {{ COPY.content['%s_blurb' % state.name|slugify]|safe }}
+                      </div>
+                    {% endif %}
+                    <h3>Top 10 Power Players</h3>
+                  </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -5,15 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="state-header">
-  <h2>{{ state.name }}</h2>
-  <h3>Top 10 Power Players</h3>
-  {% if COPY.content['%s_blurb' % state.name|slugify] %}
-    <div id="state-intro-copy">
-        {{ COPY.content['%s_blurb' % state.name|slugify]|safe }}
-    </div>
-  {% endif %}
-</div>
+
 {% include '_state_utils.html' %}
 <div class="player-list">
   {% for player in state.data[:10] %}

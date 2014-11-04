@@ -60,6 +60,7 @@ for slug in state_slugs:
             'name': state,
             'data': get_state_data(state)
         }
+        context['is_state'] = True
 
         return render_template('state.html', **context)
 
@@ -76,6 +77,7 @@ for slug in state_slugs:
             'data': get_state_data(state),
             'embed': True
         }
+        context['is_state'] = True
 
         return render_template('embed_state.html', **context)
 
