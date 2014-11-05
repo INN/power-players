@@ -1,6 +1,6 @@
-Copyright 2014 NPR.  All rights reserved.  No part of these materials may be reproduced, modified, stored in a retrieval system, or retransmitted, in any form or by any means, electronic, mechanical or otherwise, without prior written permission from NPR.
+Copyright 2014 INN.  All rights reserved.  No part of these materials may be reproduced, modified, stored in a retrieval system, or retransmitted, in any form or by any means, electronic, mechanical or otherwise, without prior written permission from INN.
 
-(Want to use this code? Send an email to nprapps@npr.org!)
+(Want to use this code? Send an email to nerds@investigativenewsnetwork.org!)
 
 
 power-players
@@ -30,7 +30,7 @@ power-players
 What is this?
 -------------
 
-**TKTK: Describe power-players here.**
+Power Players: an app about the contributors who spend hundreds of thousands, even millions, on political causes.
 
 Assumptions
 -----------
@@ -40,7 +40,7 @@ The following things are assumed to be true in this documentation.
 * You are running OSX.
 * You are using Python 2.7. (Probably the version that came OSX.)
 * You have [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper) installed and working.
-* You have NPR's AWS credentials stored as environment variables locally.
+* You have INN's AWS credentials stored as environment variables locally.
 
 For more details on the technology stack used with the app-template, see our [development environment blog post](http://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html).
 
