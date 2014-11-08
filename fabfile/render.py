@@ -105,14 +105,6 @@ def render_all():
             g.compile_includes = True
             g.compiled_includes = compiled_includes
 
-            bits = name.split('.')
-
-            # Determine which module the view resides in
-            if len(bits) > 1:
-                module, name = bits
-            else:
-                module = 'app'
-
             view = app.app.view_functions[name]
             content = view()
 
