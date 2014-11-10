@@ -257,23 +257,3 @@ def make_context(asset_depth=0):
     context['CSS'] = CSSIncluder(asset_depth=asset_depth)
 
     return context
-
-
-def project_url_for(endpoint, **values):
-    target = app_config.DEPLOYMENT_TARGET
-    targets = ['staging', 'production', ]
-    filename = values.get('filename', None)
-    project_slug = app_config.PROJECT_SLUG
-
-    # URL for assets dir
-    if endpoint is 'assets' and filename is not None:
-        if target not in targets:
-            return '/assets/' + filename
-        else:
-            return '/' + project_slug + '/assets/' + filename
-
-    # URL for routes defined in app.py
-    if target not in targets:
-        return url_for(endpoint, **values)
-    else:
-        return "/" + project_slug + url_for(endpoint, **values)

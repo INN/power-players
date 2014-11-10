@@ -6,12 +6,12 @@ import argparse
 from flask import Flask, render_template
 
 import app_config
-from render_utils import smarty_filter, urlencode_filter
+from render_utils import smarty_filter, urlencode_filter, app_template_url_for
 import static
 
 from helpers import make_context, state_slug_to_name, get_state_slugs, get_state_data, get_player_slugs, \
     get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter, \
-    slugify, project_url_for, render_player_location_chart, location_chart_class, get_player_state
+    slugify, render_player_location_chart, location_chart_class, get_player_state
 
 app = Flask(__name__)
 
@@ -24,7 +24,7 @@ app.jinja_env.filters['stateface'] = state_name_to_stateface_letter
 app.jinja_env.filters['slugify'] = slugify
 
 # Power Players functions
-app.jinja_env.globals.update(url_for=project_url_for)
+app.jinja_env.globals.update(url_for=app_template_url_for)
 app.jinja_env.globals.update(location_chart=render_player_location_chart)
 app.jinja_env.globals.update(location_chart_class=location_chart_class)
 app.jinja_env.globals.update(get_player_state=get_player_state)

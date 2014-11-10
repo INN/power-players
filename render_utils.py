@@ -6,9 +6,10 @@ import time
 import urllib
 
 from cssmin import cssmin
-from flask import Markup, g, render_template, request
+from flask import Markup, g, render_template, request, url_for
 from slimit import minify
 from smartypants import smartypants
+from urlparse import urlparse
 
 import app_config
 import copytext
@@ -209,3 +210,31 @@ def smarty_filter(s):
     s = smartypants(s)
 
     return Markup(s)
+
+def app_template_url_for(endpoint, **values):
+    target = app_config.DEPLOYMENT_TARGET
+    targets = ['staging', 'production', ]
+    filename = values.get('filename', None)
+    project_slug = app_config.PROJECT_SLUG
+
+    # URL for assets dir
+    if endpoint is 'assets' and filename is not None:
+        if target not in targets:
+            return '/assets/' + filename
+        else:
+            return '/' + project_slug + '/assets/' + filename
+
+    # Everything else
+    if target not in targets:
+        return url_for(endpoint, **values)
+    else:
+        if values.get('_external', None):
+            parts = urlparse(url_for(endpoint, **values))
+            url = '%s://%s/%s%s' % (parts.scheme, parts.netloc, project_slug, parts.path)
+            if parts.query:
+                url += '?%s' % parts.query
+            if parts.fragment:
+                url += '#%s' % parts.fragment
+            return url
+        else:
+            return "/" + project_slug + url_for(endpoint, **values)
