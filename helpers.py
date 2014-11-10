@@ -16,13 +16,9 @@ CACHE = {}
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 EXCLUDED_STATES = [
-    'Vermont',
     'Louisiana',
     'Pennsylvania',
     'Maine',
-    'Montana',
-    'New York',
-    'Ohio',
 ]
 
 # State data
