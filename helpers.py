@@ -273,16 +273,7 @@ def project_url_for(endpoint, **values):
             return '/' + project_slug + '/assets/' + filename
 
     # URL for routes defined in app.py
-    try:
-        if target not in targets:
-            return url_for(endpoint, **values)
-        else:
-            return "/" + project_slug + url_for(endpoint, **values)
-    except BuildError:
-        if endpoint is 'home':
-            if target not in targets:
-                return '/'
-            else:
-                return '/' + project_slug + '/'
-        else:
-            raise
+    if target not in targets:
+        return url_for(endpoint, **values)
+    else:
+        return "/" + project_slug + url_for(endpoint, **values)
