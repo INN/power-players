@@ -17,7 +17,6 @@ _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 EXCLUDED_STATES = [
     'Louisiana',
-    'Pennsylvania',
     'Maine',
 ]
 
