@@ -5,7 +5,7 @@
         {% if player['Picture Link'] %}
           <img src="{{ player['Picture Link'] }}" />
         {% else %}
-          <img src="{{ url_for('assets', filename='nophotoimage.png') }}" />
+          <img src="{{ url_for('static', filename='nophotoimage.png') }}" />
         {% endif %}
         </a>
         {% if player['Picturecredit'] %}

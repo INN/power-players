@@ -13,7 +13,7 @@ from helpers import make_context, state_slug_to_name, get_state_slugs, get_state
     get_player_data, state_name_to_stateface_letter, get_state_slug_name_map, format_currency_filter, \
     slugify, render_player_location_chart, location_chart_class, get_player_state
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='www/assets')
 
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
@@ -112,7 +112,6 @@ for slug in player_slugs:
             return render_template('embed_player.html', **context)
         else:
             return 404
-
 
 app.register_blueprint(static.static)
 
