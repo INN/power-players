@@ -1,7 +1,7 @@
 <div class="player">
   <div class="player-image-container">
     <div class="player-image">
-      <a href="{{ url_for(player['Donor Name']|slugify) }}">
+      <a target="_parent" href="{{ url_for(player['Donor Name']|slugify) }}">
         {% if player['Picture Link'] %}
           <img src="{{ player['Picture Link'] }}" />
         {% else %}
@@ -18,7 +18,7 @@
   </div>
   <div class="player-stats clearfix">
     <h2 class="player-name">
-      <a href="{{ url_for(player['Donor Name']|slugify) }}">{{ player['Donor Name'] }}</a>
+      <a target="_parent" href="{{ url_for(player['Donor Name']|slugify) }}">{{ player['Donor Name'] }}</a>
     </h2>
 
     {% include '_three_stars.html' %}
