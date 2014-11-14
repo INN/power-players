@@ -6,7 +6,7 @@
 
 {% block content %}
 <div id="select-a-state">
-{% for slug, state in states.iteritems() %}
+{% for slug, state in states %}
   <div class="state">
     <a href="state/{{ slug }}">
       <span class="icon">{{ state|stateface }}</span>

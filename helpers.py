@@ -38,7 +38,9 @@ def get_state_slugs():
 
 
 def get_state_slug_name_map():
-    return dict(zip(get_state_slugs(), get_state_names()))
+    states = [(slug, name) for slug, name
+        in dict(zip(get_state_slugs(), get_state_names())).iteritems()]
+    return sorted(states, key=lambda tup: tup[1])
 
 
 def get_state_data(name=None):
