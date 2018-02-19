@@ -85,7 +85,7 @@ var embedModal = function(e, type) {
         name = target.data(type + '-name'),
         deployment_target = APP_CONFIG.DEPLOYMENT_TARGET,
         embed_url = APP_CONFIG.S3_BASE_URL + '/embed/' + type + '/' + slug + '/',
-        pym_url = APP_CONFIG.S3_BASE_URL + '/assets/js/pym.js',
+        pym_url = 'https://pym.nprapps.org/pym.v1.min.js',
         player_container = target.closest('.' + type);
 
     var modal = JST.embedModal({
