@@ -227,7 +227,9 @@ def _assets_download(s3_key, local_path):
     if not (os.path.exists(dirname)):
         os.makedirs(dirname)
 
-    s3_key.get_contents_to_filename(local_path)
+    # this is necessary so we're not attempting to os.remove directories that might exist
+    if not (dirname == local_path.strip("/")):
+        s3_key.get_contents_to_filename(local_path)
 
 def _assets_upload(local_path, s3_key):
     """

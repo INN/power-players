@@ -35,21 +35,21 @@ DEPLOYMENT
 """
 PRODUCTION_S3_BUCKETS = [
     {
-        'bucket_name': 'apps.investigativenewsnetwork.org',
-        'region': 'us-west-2'
+        'bucket_name': 'apps.inn.org',
+        'region': 'us-east-1'
     }
 ]
 
 STAGING_S3_BUCKETS = [
     {
-        'bucket_name': 'stage-apps.investigativenewsnetwork.org',
-        'region': 'us-west-2'
+        'bucket_name': 'stage-apps.inn.org',
+        'region': 'us-east-1'
     }
 ]
 
 ASSETS_S3_BUCKET = {
-    'bucket_name': 'assets.apps.investigativenewsnetwork.org',
-    'region': 'us-west-2'
+    'bucket_name': 'assets.apps.inn.org',
+    'region': 'us-east-1'
 }
 
 PRODUCTION_SERVERS = ['']
@@ -107,7 +107,7 @@ SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 SERVICES
 """
 GOOGLE_ANALYTICS = {
-    'ACCOUNT_ID': 'UA-17578670-10', # apps.investigativenewsnetwork.org
+    'ACCOUNT_ID': 'UA-17578670-10', # apps.inn.org
     'DOMAIN': PRODUCTION_S3_BUCKETS[0],
     'TOPICS': '' # e.g. '[1014,3,1003,1002,1001]'
 }

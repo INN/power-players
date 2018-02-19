@@ -1,7 +1,8 @@
 Copyright 2014 INN.  All rights reserved.  No part of these materials may be reproduced, modified, stored in a retrieval system, or retransmitted, in any form or by any means, electronic, mechanical or otherwise, without prior written permission from INN.
 
-(Want to use this code? Send an email to nerds@investigativenewsnetwork.org!)
+(Want to use this code? Send an email to labs@inn.org!)
 
+This project was last updated in 2014; it is **NO LONGER MAINTAINED**. This note added in February 2018 when the project was updated to use the CDN version of Pym.js in response to [a Pym.js security vulnerability](blog.apps.npr.org/2018/02/15/pym-security-vulnerability.html).
 
 power-players
 ========================
@@ -91,6 +92,13 @@ fab update
 ```
 
 **Problems installing requirements?** You may need to run the pip command as ``ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt`` to work around an issue with OSX.
+
+**Problems running fab update?**
+
+If you receive a `openpyxl.shared.exc.InvalidFileException: [Errno 2] No such file or directory: 'data/copy.xlsx'`, you'll need to download https://docs.google.com/spreadsheets/d/16VQA9d30-1xQIrtY17NMYj5tLCSdY63Bsd2IuqFJlJo/edit#gid=1803763652 and save it in this folder at `data/copy.xlsx`. Don't commit the file to git, please and thank you.
+
+If you receive `KeyError: "Error! You're missing some variables. You need to export APPS_GOOGLE_EMAIL and APPS_GOOGLE_PASS."`, just don't run `fab text` commands, or any command that runs `fab text` or `fab text.update`. Download the required `.xlsx` file through the above route.
+
 
 Hide project secrets
 --------------------
